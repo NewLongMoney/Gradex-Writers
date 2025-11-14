@@ -92,4 +92,4 @@ Based on the Global Online Writing Industry Investment Report:
 
 ## License
 
-© 2024 Gradex Writers. All rights reserved.
+© 2025 Gradex Writers made by captivart agency (captivart.art). All rights reserved.

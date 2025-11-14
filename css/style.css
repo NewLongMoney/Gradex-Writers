@@ -713,6 +713,18 @@ section {
     font-size: 0.9em;
 }
 
+.footer-bottom a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: var(--white);
+    text-decoration: underline;
+    opacity: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
