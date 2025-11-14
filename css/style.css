@@ -52,21 +52,19 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.5em;
-    font-weight: 700;
-    color: var(--white);
 }
 
-.pen-icon {
-    font-size: 1.2em;
-    color: var(--gold);
+.logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.1);
+    transition: all 0.3s;
 }
 
-.pen-icon-large {
-    font-size: 3em;
-    color: var(--white);
-    display: block;
-    margin-bottom: 10px;
+.logo-img:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -145,13 +143,29 @@ body {
 
 .hero-logo {
     margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.brand-name {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 2px;
+.hero-logo-img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(1.05);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-slogan {
@@ -672,10 +686,22 @@ section {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: var(--white);
     margin-bottom: 15px;
+}
+
+.footer-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.1);
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.footer-logo-img:hover {
+    opacity: 1;
+    filter: brightness(1.2);
+    transform: scale(1.05);
 }
 
 .footer-section p {
@@ -736,8 +762,8 @@ section {
         font-size: 2.5em;
     }
 
-    .brand-name {
-        font-size: 2em;
+    .hero-logo-img {
+        max-width: 300px;
     }
 
     .quote-calculator {
@@ -777,6 +803,10 @@ section {
     .hero-slogan {
         font-size: 2em;
         letter-spacing: 1px;
+    }
+
+    .hero-logo-img {
+        max-width: 250px;
     }
 
     .hero-services {
