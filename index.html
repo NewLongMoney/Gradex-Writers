@@ -2,3 +2,314 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradex Writers - Professional Writing Services</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="pen-icon">✒</span>
+                <span class="logo-text">Gradex Writers</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact" class="btn-nav">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <span class="pen-icon-large">✒</span>
+                <h1 class="brand-name">Gradex Writers</h1>
+            </div>
+            <h2 class="hero-slogan">We Write.<br>You Excel.</h2>
+            <p class="hero-services">ACADEMIC • RESEARCH • BUSINESS WRITING</p>
+            <p class="hero-trust">TRUSTED GLOBALLY • 24/7 SUPPORT</p>
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary">Get Instant Quote</a>
+                <a href="#services" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Academic Writing</h3>
+                    <p>Essays, research papers, thesis projects, and assignments for all academic levels. Expert writers deliver quality content that meets your requirements.</p>
+                    <ul>
+                        <li>High School Assignments</li>
+                        <li>College-Level Essays</li>
+                        <li>Master's Level Research</li>
+                        <li>PhD & Technical Papers</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Research Writing</h3>
+                    <p>Comprehensive research projects with proper citations, methodology, and analysis. Our researchers ensure accuracy and academic integrity.</p>
+                    <ul>
+                        <li>Literature Reviews</li>
+                        <li>Case Studies</li>
+                        <li>Data Analysis</li>
+                        <li>Research Proposals</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Business Writing</h3>
+                    <p>Professional business documents that drive results. From reports to proposals, we help you communicate effectively with stakeholders.</p>
+                    <ul>
+                        <li>Business Reports</li>
+                        <li>Proposals & Pitch Decks</li>
+                        <li>Technical Documentation</li>
+                        <li>Content Marketing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Gradex Writers</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Instant Quote Calculator</h3>
+                    <p>Get an accurate price estimate instantly based on page count, deadline, and complexity. No hidden fees, transparent pricing.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>Order Management Dashboard</h3>
+                    <p>Track your project progress in real-time. Communicate directly with your writer and receive updates on delivery status.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Payment Gateway</h3>
+                    <p>Multiple payment options including PayPal, Stripe, and crypto wallets. Your financial information is always protected.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Matching</h3>
+                    <p>Our intelligent system automatically assigns the best writer for your topic, ensuring expertise and quality match.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Live Chat Support</h3>
+                    <p>Round-the-clock customer support. Get answers to your questions instantly and resolve any concerns quickly.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>100% plagiarism-free guarantee with confidentiality policy. We ensure originality and protect your privacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Calculator Section -->
+    <section id="quote" class="quote-section">
+        <div class="container">
+            <h2 class="section-title">Get Your Instant Quote</h2>
+            <div class="quote-calculator">
+                <div class="quote-form">
+                    <div class="form-group">
+                        <label for="service-type">Service Type</label>
+                        <select id="service-type">
+                            <option value="high-school">High School Assignment</option>
+                            <option value="college">College-Level Essay</option>
+                            <option value="masters">Master's Level Research</option>
+                            <option value="phd">PhD or Technical Paper</option>
+                            <option value="business">Business Document</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pages">Number of Pages</label>
+                        <input type="number" id="pages" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency">Urgency</label>
+                        <select id="urgency">
+                            <option value="normal">Normal (7+ days)</option>
+                            <option value="urgent">Urgent (3-6 days)</option>
+                            <option value="very-urgent">Very Urgent (1-2 days)</option>
+                        </select>
+                    </div>
+                    <button id="calculate-btn" class="btn btn-primary">Calculate Price</button>
+                </div>
+                <div class="quote-result" id="quote-result">
+                    <div class="quote-display">
+                        <p class="quote-label">Estimated Price</p>
+                        <p class="quote-price" id="quote-price">$0.00</p>
+                        <p class="quote-note">*Final price may vary based on specific requirements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <p class="section-subtitle">Competitive rates based on global market standards</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>High School</h3>
+                    <div class="price-range">$5 - $10</div>
+                    <p class="price-unit">per page</p>
+                    <ul class="pricing-features">
+                        <li>Basic research required</li>
+                        <li>Standard formatting</li>
+                        <li>3-5 day turnaround</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>College Level</h3>
+                    <div class="price-range">$10 - $20</div>
+                    <p class="price-unit">per page</p>
+                    <ul class="pricing-features">
+                        <li>In-depth research</li>
+                        <li>Academic citations</li>
+                        <li>5-7 day turnaround</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Master's Level</h3>
+                    <div class="price-range">$20 - $40</div>
+                    <p class="price-unit">per page</p>
+                    <ul class="pricing-features">
+                        <li>Advanced research</li>
+                        <li>Expert-level analysis</li>
+                        <li>7-10 day turnaround</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>PhD / Technical</h3>
+                    <div class="price-range">$40 - $80</div>
+                    <p class="price-unit">per page</p>
+                    <ul class="pricing-features">
+                        <li>Specialized expertise</li>
+                        <li>Complex methodologies</li>
+                        <li>10-14 day turnaround</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>Business Documents</h3>
+                    <div class="price-range">$30 - $100</div>
+                    <p class="price-unit">per project</p>
+                    <ul class="pricing-features">
+                        <li>Professional formatting</li>
+                        <li>Industry-specific</li>
+                        <li>Custom timeline</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About the Global Writing Industry</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>The global writing industry has evolved into a lucrative business, largely driven by demand from students, entrepreneurs, and organizations in developed nations who seek professional assistance for academic and business tasks. The industry's value is estimated in billions annually, with thousands of writers worldwide offering services such as essay writing, research projects, technical documentation, and business proposals.</p>
+                    
+                    <p>This field has become a significant income stream for skilled freelance writers and agencies. The market thrives due to the increasing number of international students, remote education, and the rise of online freelancing platforms.</p>
+
+                    <h3>Growth Potential</h3>
+                    <p>The online writing market is projected to continue expanding, driven by globalization, e-learning, and the gig economy. With the right platform, skilled writers, and effective marketing strategies, investors can achieve consistent revenue and global reach.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">Billions</div>
+                        <div class="stat-label">Annual Market Value</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">Global</div>
+                        <div class="stat-label">Trusted Worldwide</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Ready to Excel?</h2>
+            <p>Join thousands of satisfied clients who trust Gradex Writers for their writing needs</p>
+            <div class="cta-buttons">
+                <a href="#quote" class="btn btn-primary btn-large">Start Your Project</a>
+                <a href="#services" class="btn btn-secondary btn-large">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="pen-icon">✒</span>
+                        <span>Gradex Writers</span>
+                    </div>
+                    <p>Professional writing services trusted globally. We write. You excel.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Academic Writing</a></li>
+                        <li><a href="#services">Research Writing</a></li>
+                        <li><a href="#services">Business Writing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li>24/7 Live Chat</li>
+                        <li>Email Support</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gradex Writers. All rights reserved. | TRUSTED GLOBALLY • 24/7 SUPPORT</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
