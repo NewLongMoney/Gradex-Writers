@@ -2,9 +2,12 @@
   <!-- Background -->
   <rect width="100" height="100" fill="#0A1F44" rx="15"/>
   
-  <!-- Pen nib icon - simplified for small size -->
-  <path d="M 25 30 L 50 20 L 75 30 L 70 45 L 50 55 L 30 45 Z" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
+  <!-- Pen nib icon - pointing downwards -->
+  <path d="M 50 20 L 30 35 L 35 50 L 50 60 L 65 50 L 70 35 Z" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
   
-  <!-- Letter G - larger and bolder -->
-  <text x="50" y="80" font-family="Arial, sans-serif" font-size="40" font-weight="900" fill="#D4AF37" text-anchor="middle" letter-spacing="-2">G</text>
+  <!-- Pen tip detail line -->
+  <path d="M 50 20 L 50 60" stroke="#FFFFFF" stroke-width="1.5" opacity="0.3"/>
+  
+  <!-- Letter G - positioned below pen -->
+  <text x="50" y="85" font-family="Arial, sans-serif" font-size="35" font-weight="900" fill="#D4AF37" text-anchor="middle" letter-spacing="-2">G</text>
 </svg>
