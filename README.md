@@ -88,8 +88,10 @@ In your Vercel project dashboard:
 
 1. Go to **Settings** → **Environment Variables**
 2. Add the following variables:
-   - `EMAIL_USER`: Your Gmail address (e.g., `your-email@gmail.com`)
-   - `EMAIL_PASS`: Your Gmail app password (16-character code)
+   - `EMAIL_USER`: `tmmchess@gmail.com`
+   - `EMAIL_PASS`: `#1tmmchess` (or your Gmail app password if 2FA is enabled)
+
+**Note:** If you have 2-Step Verification enabled on your Gmail account, you'll need to use a Gmail App Password instead of your regular password. Generate one at https://myaccount.google.com/apppasswords
 
 ### 3. Deploy
 

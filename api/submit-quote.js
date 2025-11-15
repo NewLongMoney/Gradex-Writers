@@ -55,12 +55,12 @@ This email was sent from the Gradex Writers quote form.
     `;
 
     // Create transporter using Gmail SMTP
-    // You'll need to set environment variables: EMAIL_USER and EMAIL_PASS
+    // Uses environment variables if set, otherwise falls back to default credentials
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER || 'your-email@gmail.com',
-        pass: process.env.EMAIL_PASS || 'your-app-password',
+        user: process.env.EMAIL_USER || 'tmmchess@gmail.com',
+        pass: process.env.EMAIL_PASS || '#1tmmchess',
       },
     });
 
@@ -78,7 +78,7 @@ This email was sent from the Gradex Writers quote form.
 
     // Prepare email with attachments
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'your-email@gmail.com',
+      from: process.env.EMAIL_USER || 'tmmchess@gmail.com',
       to: 'tmmchess@gmail.com',
       subject: `New Quote Request from ${name} - ${serviceType}`,
       text: emailContent,
