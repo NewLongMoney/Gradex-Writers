@@ -293,9 +293,15 @@ if (quoteForm) {
                 body: JSON.stringify(formData)
             });
             
+            // Check if response is ok
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ error: 'Unknown error occurred' }));
+                throw new Error(errorData.error || `Server error: ${response.status}`);
+            }
+            
             const result = await response.json();
             
-            if (response.ok && result.success) {
+            if (result.success) {
                 // Show success message
                 alert('Thank you! Your quote request has been submitted successfully. We will contact you soon at ' + formData.email);
                 
@@ -311,7 +317,21 @@ if (quoteForm) {
             
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert('Sorry, there was an error submitting your quote request. Please try again or contact us directly at tmmchess@gmail.com');
+            
+            // Show more specific error message
+            let errorMessage = 'Sorry, there was an error submitting your quote request.';
+            
+            if (error.message) {
+                if (error.message.includes('authentication')) {
+                    errorMessage = 'Email service configuration error. Please contact support at tmmchess@gmail.com';
+                } else if (error.message.includes('connection')) {
+                    errorMessage = 'Connection error. Please check your internet connection and try again.';
+                } else {
+                    errorMessage = error.message;
+                }
+            }
+            
+            alert(errorMessage + '\n\nIf the problem persists, please contact us directly at tmmchess@gmail.com');
         } finally {
             // Re-enable submit button
             if (submitBtn) {

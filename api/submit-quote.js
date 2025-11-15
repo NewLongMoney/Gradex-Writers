@@ -16,6 +16,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Validate required fields
     const {
       name,
       email,
@@ -29,6 +30,12 @@ export default async function handler(req, res) {
       estimatedPrice,
       files // Array of { filename, content (base64) }
     } = req.body;
+
+    if (!name || !email || !serviceType || !pages || !deadline || !urgency) {
+      return res.status(400).json({ 
+        error: 'Missing required fields. Please fill in all required fields.' 
+      });
+    }
 
     // Create email content
     const emailContent = `
@@ -54,15 +61,40 @@ ${instructions || 'None provided'}
 This email was sent from the Gradex Writers quote form.
     `;
 
+    // Get email credentials from environment variables
+    const emailUser = process.env.EMAIL_USER || 'tmmchess@gmail.com';
+    const emailPass = process.env.EMAIL_PASS || '#1tmmchess';
+
+    if (!emailUser || !emailPass) {
+      console.error('Email credentials not configured');
+      return res.status(500).json({ 
+        error: 'Email service not configured. Please contact support.' 
+      });
+    }
+
     // Create transporter using Gmail SMTP
-    // Uses environment variables if set, otherwise falls back to default credentials
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER || 'tmmchess@gmail.com',
-        pass: process.env.EMAIL_PASS || '#1tmmchess',
+        user: emailUser,
+        pass: emailPass,
       },
+      // Add timeout and connection options
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
+
+    // Verify transporter configuration
+    try {
+      await transporter.verify();
+    } catch (verifyError) {
+      console.error('Email transporter verification failed:', verifyError);
+      return res.status(500).json({ 
+        error: 'Email service configuration error. Please check your email credentials.',
+        details: process.env.NODE_ENV === 'development' ? verifyError.message : undefined
+      });
+    }
 
     // Prepare attachments from base64 files
     const attachments = [];
@@ -78,8 +110,9 @@ This email was sent from the Gradex Writers quote form.
 
     // Prepare email with attachments
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'tmmchess@gmail.com',
+      from: `"Gradex Writers" <${emailUser}>`,
       to: 'tmmchess@gmail.com',
+      replyTo: email,
       subject: `New Quote Request from ${name} - ${serviceType}`,
       text: emailContent,
       html: `
@@ -112,7 +145,8 @@ This email was sent from the Gradex Writers quote form.
     };
 
     // Send email
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
 
     return res.status(200).json({ 
       success: true, 
@@ -121,8 +155,20 @@ This email was sent from the Gradex Writers quote form.
 
   } catch (error) {
     console.error('Error submitting quote:', error);
+    
+    // Provide more specific error messages
+    let errorMessage = 'Failed to submit quote request. Please try again later.';
+    
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Email authentication failed. Please check email credentials.';
+    } else if (error.code === 'ECONNECTION') {
+      errorMessage = 'Could not connect to email service. Please try again later.';
+    } else if (error.response) {
+      errorMessage = `Email service error: ${error.response}`;
+    }
+    
     return res.status(500).json({ 
-      error: 'Failed to submit quote request. Please try again later.',
+      error: errorMessage,
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
