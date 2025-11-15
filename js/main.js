@@ -225,3 +225,99 @@ function toggleMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
     navMenu.classList.toggle('active');
 }
+
+// Form submission handler
+const quoteForm = document.getElementById('quote-form');
+const fileUpload = document.getElementById('file-upload');
+const submitBtn = quoteForm?.querySelector('button[type="submit"]');
+
+// Convert file to base64
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            // Remove data URL prefix (data:application/pdf;base64,)
+            const base64 = reader.result.split(',')[1];
+            resolve({
+                filename: file.name,
+                content: base64
+            });
+        };
+        reader.onerror = error => reject(error);
+    });
+}
+
+// Handle form submission
+if (quoteForm) {
+    quoteForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Disable submit button
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+        }
+        
+        try {
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                serviceType: document.getElementById('service-type').value,
+                academicLevel: document.getElementById('academic-level').value,
+                pages: document.getElementById('pages').value,
+                deadline: document.getElementById('deadline').value,
+                urgency: document.getElementById('urgency').value,
+                currency: document.getElementById('currency').value,
+                instructions: document.getElementById('instructions').value,
+                estimatedPrice: quotePrice.textContent
+            };
+            
+            // Handle file uploads
+            const files = [];
+            if (fileUpload && fileUpload.files.length > 0) {
+                const filePromises = Array.from(fileUpload.files).map(file => fileToBase64(file));
+                const fileData = await Promise.all(filePromises);
+                files.push(...fileData);
+            }
+            
+            formData.files = files;
+            
+            // Submit to API
+            const response = await fetch('/api/submit-quote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                // Show success message
+                alert('Thank you! Your quote request has been submitted successfully. We will contact you soon at ' + formData.email);
+                
+                // Reset form
+                quoteForm.reset();
+                quotePrice.textContent = '$0.00';
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                throw new Error(result.error || 'Failed to submit quote request');
+            }
+            
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Sorry, there was an error submitting your quote request. Please try again or contact us directly at tmmchess@gmail.com');
+        } finally {
+            // Re-enable submit button
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Quote Request';
+            }
+        }
+    });
+}

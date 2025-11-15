@@ -59,13 +59,41 @@ Information about the global writing industry, market value, and growth potentia
 
 ```
 Gradex-Writers/
-├── index.html      # Main HTML file with all sections
+├── index.html          # Main HTML file with all sections
 ├── css/
-│   └── style.css   # Complete styling with brand colors
+│   └── style.css       # Complete styling with brand colors
 ├── js/
-│   └── main.js     # Interactive features and quote calculator
-└── README.md       # This file
+│   └── main.js         # Interactive features and quote calculator
+├── api/
+│   └── submit-quote.js # Serverless function for form submissions
+├── package.json        # Node.js dependencies
+└── README.md           # This file
 ```
+
+## Email Setup (Required for Form Submissions)
+
+The quote form sends emails with file attachments to **tmmchess@gmail.com**. To enable this functionality:
+
+### 1. Set up Gmail App Password
+
+1. Go to your Google Account settings
+2. Enable 2-Step Verification
+3. Go to App Passwords (https://myaccount.google.com/apppasswords)
+4. Generate a new app password for "Mail"
+5. Copy the 16-character password
+
+### 2. Configure Vercel Environment Variables
+
+In your Vercel project dashboard:
+
+1. Go to **Settings** → **Environment Variables**
+2. Add the following variables:
+   - `EMAIL_USER`: Your Gmail address (e.g., `your-email@gmail.com`)
+   - `EMAIL_PASS`: Your Gmail app password (16-character code)
+
+### 3. Deploy
+
+After setting environment variables, redeploy your project. The form will now send emails with attachments to tmmchess@gmail.com when users submit quote requests.
 
 ## Browser Compatibility
 
