@@ -20,20 +20,69 @@ const calculateBtn = document.getElementById('calculate-btn');
 const quotePrice = document.getElementById('quote-price');
 const quoteResult = document.getElementById('quote-result');
 
-// Pricing structure based on the investment report
+// Pricing structure based on urgency-based pricing sheet
+// Format: { standard: {min, max}, rush: {min, max}, urgent: {min, max}, perPage: boolean }
 const pricing = {
-    'high-school': { base: 7.5, min: 5, max: 10 },
-    'college': { base: 15, min: 10, max: 20 },
-    'masters': { base: 30, min: 20, max: 40 },
-    'phd': { base: 60, min: 40, max: 80 },
-    'business': { base: 65, min: 30, max: 100 }
-};
-
-// Urgency multipliers
-const urgencyMultipliers = {
-    'normal': 1.0,
-    'urgent': 1.3,
-    'very-urgent': 1.6
+    'high-school': {
+        standard: { min: 10, max: 15 },
+        rush: { min: 20, max: 25 },
+        urgent: { min: 30, max: 45 },
+        perPage: true
+    },
+    'undergraduate': {
+        standard: { min: 12, max: 20 },
+        rush: { min: 25, max: 35 },
+        urgent: { min: 40, max: 60 },
+        perPage: true
+    },
+    'masters': {
+        standard: { min: 18, max: 28 },
+        rush: { min: 35, max: 50 },
+        urgent: { min: 60, max: 90 },
+        perPage: true
+    },
+    'phd': {
+        standard: { min: 25, max: 40 },
+        rush: { min: 50, max: 80 },
+        urgent: { min: 90, max: 150 },
+        perPage: true
+    },
+    'technical': {
+        standard: { min: 20, max: 35 },
+        rush: { min: 40, max: 65 },
+        urgent: { min: 70, max: 120 },
+        perPage: true
+    },
+    'data-analysis': {
+        standard: { min: 50, max: 120 },
+        rush: { min: 120, max: 250 },
+        urgent: { min: 250, max: 500 },
+        perPage: false
+    },
+    'dissertation': {
+        standard: { min: 200, max: 500 },
+        rush: { min: 500, max: 900 },
+        urgent: { min: 900, max: 1500 },
+        perPage: false
+    },
+    'business-docs': {
+        standard: { min: 30, max: 80 },
+        rush: { min: 80, max: 140 },
+        urgent: { min: 140, max: 250 },
+        perPage: true
+    },
+    'content': {
+        standard: { min: 40, max: 120 },
+        rush: { min: 75, max: 180 },
+        urgent: { min: 120, max: 300 },
+        perPage: false
+    },
+    'editing': {
+        standard: { min: 5, max: 10 },
+        rush: { min: 10, max: 15 },
+        urgent: { min: 15, max: 25 },
+        perPage: true
+    }
 };
 
 // Calculate quote
@@ -42,31 +91,54 @@ function calculateQuote() {
     const pageCount = parseInt(pages.value) || 1;
     const selectedUrgency = urgency.value;
     
-    // Get base price
-    let basePrice = pricing[selectedService].base;
+    if (!pricing[selectedService]) {
+        quotePrice.textContent = '$0.00';
+        return;
+    }
     
-    // Apply urgency multiplier
-    const multiplier = urgencyMultipliers[selectedUrgency];
-    let totalPrice = basePrice * pageCount * multiplier;
+    const servicePricing = pricing[selectedService];
     
-    // For business documents, it's per project, not per page
-    if (selectedService === 'business') {
-        // Business documents have a different pricing model
-        // Base price is per project, but we'll adjust based on pages
-        if (pageCount <= 5) {
-            totalPrice = pricing[selectedService].base * multiplier;
-        } else if (pageCount <= 10) {
-            totalPrice = (pricing[selectedService].base * 1.5) * multiplier;
+    // Map urgency values to pricing tiers
+    let priceTier;
+    if (selectedUrgency === 'standard') {
+        priceTier = servicePricing.standard;
+    } else if (selectedUrgency === 'rush') {
+        priceTier = servicePricing.rush;
+    } else if (selectedUrgency === 'urgent') {
+        priceTier = servicePricing.urgent;
+    } else {
+        priceTier = servicePricing.standard; // Default
+    }
+    
+    // Calculate average price from min/max range
+    const avgPrice = (priceTier.min + priceTier.max) / 2;
+    let totalPrice;
+    
+    // Check if service is per-page or fixed price
+    if (servicePricing.perPage) {
+        // Per-page pricing: average price * page count
+        totalPrice = avgPrice * pageCount;
+    } else {
+        // Fixed price services (data analysis, dissertation, content writing)
+        if (selectedService === 'data-analysis' || selectedService === 'dissertation') {
+            // These are project-based, use average price
+            totalPrice = avgPrice;
+        } else if (selectedService === 'content') {
+            // Content writing is per article, use average price
+            totalPrice = avgPrice;
         } else {
-            totalPrice = (pricing[selectedService].base * 2) * multiplier;
+            totalPrice = avgPrice;
         }
     }
     
     // Round to 2 decimal places
     totalPrice = Math.round(totalPrice * 100) / 100;
     
-    // Display the result
+    // Display the result with price range
+    const minTotal = servicePricing.perPage ? priceTier.min * pageCount : priceTier.min;
+    const maxTotal = servicePricing.perPage ? priceTier.max * pageCount : priceTier.max;
     quotePrice.textContent = `$${totalPrice.toFixed(2)}`;
+    quotePrice.setAttribute('data-range', `$${minTotal.toFixed(0)} - $${maxTotal.toFixed(0)}`);
     
     // Animate the result
     quoteResult.style.opacity = '0';
