@@ -13,19 +13,22 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0A1F44 0%, #08182F 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0A1F44 0%, #1a3357 100%);
             min-height: 100vh;
+            color: #ffffff;
         }
 
         .dashboard-header {
-            background: linear-gradient(135deg, #0A1F44 0%, #1a3357 100%);
+            background: rgba(10, 31, 68, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid #D4AF37;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .dashboard-header .container {
@@ -34,172 +37,235 @@
             align-items: center;
         }
 
-        .dashboard-title {
+        .header-left {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .dashboard-title h1 {
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+            border-radius: 12px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .dashboard-title {
             font-size: 1.5rem;
-            color: var(--gold);
+            font-weight: 700;
+            color: #ffffff;
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
+            color: #ffffff;
+            font-weight: 500;
         }
 
-        .user-info span {
-            color: var(--white);
-        }
-
-        .logout-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            border: 1px solid var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .logout-btn:hover {
-            background-color: var(--white);
-            color: var(--deep-blue);
+        .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .dashboard-content {
             padding: 2rem 0;
         }
 
-        .action-bar {
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
-        .action-bar h2 {
-            color: var(--white);
+        .section-title {
             font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
         }
 
-        .new-article-btn {
-            background-color: var(--gold);
-            color: var(--deep-blue);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .new-article-btn:hover {
-            background-color: var(--gold-dark);
-            transform: translateY(-2px);
-        }
-
-        .articles-grid {
+        .articles-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
         .article-card {
-            background-color: var(--light-blue);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             padding: 1.5rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s;
         }
 
         .article-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
         .article-card h3 {
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
         }
 
         .article-meta {
             display: flex;
             gap: 1rem;
-            margin: 0.5rem 0;
-            font-size: 0.9rem;
-            color: var(--white);
-            opacity: 0.7;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .article-status {
             display: inline-block;
             padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin: 0.5rem 0;
+            margin-bottom: 0.75rem;
         }
 
         .status-published {
-            background-color: rgba(0, 255, 0, 0.2);
-            color: #4ade80;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .status-draft {
-            background-color: rgba(255, 165, 0, 0.2);
-            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
         }
 
         .article-excerpt {
-            color: var(--white);
-            opacity: 0.8;
-            margin: 1rem 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
         .article-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
             margin-top: 1rem;
         }
 
-        .btn-edit, .btn-delete {
+        .btn-edit {
+            flex: 1;
             padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 6px;
+            font-size: 0.875rem;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s;
         }
 
-        .btn-edit {
-            background-color: var(--gold);
-            color: var(--deep-blue);
-            flex: 1;
-        }
-
         .btn-edit:hover {
-            background-color: var(--gold-dark);
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
         }
 
         .btn-delete {
-            background-color: rgba(255, 0, 0, 0.3);
-            color: #ff6b6b;
             flex: 1;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-delete:hover {
-            background-color: rgba(255, 0, 0, 0.5);
+            background: rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .no-articles {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
         }
 
         /* Modal Styles */
@@ -210,83 +276,88 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             z-index: 2000;
-            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
         .modal.show {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
         }
 
         .modal-content {
-            background-color: var(--light-blue);
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 16px;
             padding: 2rem;
-            max-width: 800px;
+            max-width: 700px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .modal-header h2 {
-            color: var(--gold);
-            font-size: 1.8rem;
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0A1F44;
         }
 
         .close-btn {
             background: none;
             border: none;
-            color: var(--white);
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #6B7280;
+            padding: 0.25rem 0.5rem;
+            transition: color 0.2s;
         }
 
         .close-btn:hover {
-            color: var(--gold);
+            color: #0A1F44;
         }
 
-        .article-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            color: var(--white);
+            color: #374151;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border-radius: 5px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background-color: var(--deep-blue);
-            color: var(--white);
+            padding: 0.875rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: all 0.2s;
+            background-color: #F9FAFB;
             font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #D4AF37;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
         .form-group textarea {
@@ -294,156 +365,96 @@
             resize: vertical;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
         .form-actions {
             display: flex;
             gap: 1rem;
             justify-content: flex-end;
+            margin-top: 2rem;
         }
 
-        .btn-save, .btn-cancel {
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        @media (max-width: 768px) {
+            .dashboard-header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-        .btn-save {
-            background-color: var(--gold);
-            color: var(--deep-blue);
-        }
+            .header-left,
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
 
-        .btn-save:hover {
-            background-color: var(--gold-dark);
-        }
-
-        .btn-cancel {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
-
-        .btn-cancel:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .no-articles {
-            text-align: center;
-            padding: 3rem;
-            color: var(--white);
-            opacity: 0.7;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: var(--white);
-        }
-
-        .view-site-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            border: 1px solid var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .view-site-btn:hover {
-            background-color: var(--white);
-            color: var(--deep-blue);
+            .articles-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-header">
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
         <div class="container">
-            <div class="dashboard-title">
-                <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L6 8L12 14L18 8L12 2Z" fill="white" stroke="white" stroke-width="0.5"/>
-                    <circle cx="12" cy="8" r="1.5" fill="#0A1F44"/>
-                    <line x1="12" y1="14" x2="12" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M9 26L12 29L15 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-                <h1>Admin Dashboard</h1>
+            <div class="header-left">
+                <div class="logo">
+                    <img src="/public/logo.jpeg" alt="Gradex Writers Logo" class="logo-image">
+                </div>
+                <h1 class="dashboard-title">Admin Dashboard</h1>
             </div>
-            <div class="user-info">
-                <a href="/blog.html" class="view-site-btn">View Blog</a>
-                <span id="userName"></span>
-                <button class="logout-btn" id="logoutBtn">Logout</button>
+            <div class="header-right">
+                <a href="/blog.html" class="btn btn-secondary">View Blog</a>
+                <span class="user-info">👤 <span id="userName">Admin</span></span>
+                <button id="logoutBtn" class="btn btn-danger">Logout</button>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="dashboard-content">
+    <!-- Dashboard Content -->
+    <main class="dashboard-content">
         <div class="container">
-            <div class="action-bar">
-                <h2>Articles</h2>
-                <button class="new-article-btn" id="newArticleBtn">+ New Article</button>
+            <div class="section-header">
+                <h2 class="section-title">Articles</h2>
+                <button id="newArticleBtn" class="btn btn-primary">+ New Article</button>
             </div>
 
-            <div id="articlesContainer" class="articles-grid">
-                <div class="loading">Loading articles...</div>
+            <div id="articlesContainer" class="articles-container">
+                <div class="no-articles">Loading articles...</div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Article Modal -->
     <div id="articleModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">New Article</h2>
-                <button class="close-btn" id="closeModalBtn">&times;</button>
+                <h2 id="modalTitle" class="modal-title">New Article</h2>
+                <button id="closeModalBtn" class="close-btn">&times;</button>
             </div>
-            <form id="articleForm" class="article-form">
-                <input type="hidden" id="articleId">
-                
+            <form id="articleForm">
+                <input type="hidden" id="articleId" value="">
                 <div class="form-group">
                     <label for="articleTitle">Title *</label>
                     <input type="text" id="articleTitle" required>
                 </div>
-
                 <div class="form-group">
                     <label for="articleExcerpt">Excerpt</label>
-                    <textarea id="articleExcerpt" rows="3" placeholder="Short description of the article"></textarea>
+                    <textarea id="articleExcerpt" rows="3"></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="articleContent">Content *</label>
                     <textarea id="articleContent" required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="articleCategory">Category</label>
-                    <select id="articleCategory">
-                        <option value="General">General</option>
-                        <option value="Academic Writing">Academic Writing</option>
-                        <option value="Business Writing">Business Writing</option>
-                        <option value="Technical Writing">Technical Writing</option>
-                        <option value="Creative Writing">Creative Writing</option>
-                        <option value="Tips & Guides">Tips & Guides</option>
-                    </select>
+                    <input type="text" id="articleCategory" value="General">
                 </div>
-
                 <div class="form-group">
                     <label for="articleAuthor">Author</label>
                     <input type="text" id="articleAuthor" value="Gradex Writers">
                 </div>
-
                 <div class="form-group">
                     <label for="articleImage">Image URL</label>
-                    <input type="text" id="articleImage" placeholder="https://example.com/image.jpg">
+                    <input type="url" id="articleImage">
                 </div>
-
                 <div class="form-group">
                     <label for="articleStatus">Status</label>
                     <select id="articleStatus">
@@ -451,10 +462,9 @@
                         <option value="published">Published</option>
                     </select>
                 </div>
-
                 <div class="form-actions">
-                    <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
-                    <button type="submit" class="btn-save">Save Article</button>
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Article</button>
                 </div>
             </form>
         </div>
@@ -463,7 +473,11 @@
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
     <script>
+        let firebaseConfig = null;
+        const token = localStorage.getItem('adminToken');
+
         // Load Firebase config from API
         async function loadFirebaseConfig() {
             try {
@@ -476,7 +490,7 @@
             }
         }
     </script>
-    <script src="dashboard.js?v=20251204"></script>
+    
+    <script src="admin/dashboard.js"></script>
 </body>
 </html>
-
