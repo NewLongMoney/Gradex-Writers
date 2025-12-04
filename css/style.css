@@ -58,6 +58,11 @@ body {
     height: 32px;
 }
 
+.logo-image {
+    height: 50px;
+    width: auto;
+}
+
 .logo-text {
     font-weight: 600;
 }
@@ -79,6 +84,63 @@ body {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--gold);
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+    transition: transform 0.3s;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--light-blue);
+    min-width: 220px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 400;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--gold);
+    color: var(--deep-blue);
 }
 
 .btn-primary {
@@ -176,6 +238,12 @@ body {
 .logo-icon-large {
     width: 80px;
     height: 105px;
+}
+
+.logo-image-large {
+    width: 400px;
+    max-width: 90vw;
+    height: auto;
 }
 
 .brand-name {

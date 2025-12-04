@@ -303,17 +303,20 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L6 8L12 14L18 8L12 2Z" fill="white" stroke="white" stroke-width="0.5"/>
-                    <circle cx="12" cy="8" r="1.5" fill="#0A1F44"/>
-                    <line x1="12" y1="14" x2="12" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M9 26L12 29L15 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-                <span class="logo-text">Gradex Writers</span>
+                <img src="/public/logo.jpeg" alt="Gradex Writers Logo" class="logo-image">
             </div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/#services">Services</a></li>
+                <li class="nav-dropdown">
+                    <a href="/#services">Services <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#services">Academic Writing</a></li>
+                        <li><a href="/#services">Business Writing</a></li>
+                        <li><a href="/#services">Technical Writing</a></li>
+                        <li><a href="/#services">Creative Writing</a></li>
+                        <li><a href="/#services">Writing Training</a></li>
+                    </ul>
+                </li>
                 <li><a href="/#pricing">Pricing</a></li>
                 <li><a href="/blog.html" class="active">Blog</a></li>
                 <li><a href="/#quote" class="btn-primary">Get Quote</a></li>
