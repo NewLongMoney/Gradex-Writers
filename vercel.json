@@ -6,6 +6,19 @@
       "use": "@vercel/node"
     }
   ],
+  "functions": {
+    "server.js": {
+      "includeFiles": [
+        "index.html",
+        "blog.html",
+        "css/**",
+        "js/**",
+        "admin/**",
+        "uploads/**",
+        "public/**"
+      ]
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
