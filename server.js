@@ -348,6 +348,9 @@ app.post('/api/admin/upload', authenticateFirebaseToken, upload.single('image'),
 // Serve uploaded files
 app.use('/uploads', express.static('uploads'));
 
+// Serve public files (logo, etc.)
+app.use('/public', express.static('public'));
+
 // Serve main pages explicitly
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
