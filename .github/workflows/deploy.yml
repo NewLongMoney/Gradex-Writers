@@ -1,0 +1,29 @@
+# GitHub Actions Workflow for Deployment
+# This is optional - for automated CI/CD
+
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests (if you add them)
+      run: echo "Tests would run here"
+      
+    # Deployment happens automatically via Render/Railway webhook
+
