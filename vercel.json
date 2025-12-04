@@ -1,16 +1,19 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "/server.js"
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
     },
     {
-      "source": "/admin/dashboard",
-      "destination": "/admin/dashboard.html"
-    },
-    {
-      "source": "/admin",
-      "destination": "/admin/login.html"
+      "src": "/(.*)",
+      "dest": "/server.js"
     }
   ]
 }
