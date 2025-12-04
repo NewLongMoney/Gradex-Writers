@@ -6,38 +6,108 @@
     <title>Admin Login - Gradex Writers</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        .login-container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0A1F44 0%, #1a3357 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--dark-blue) 100%);
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 450px;
         }
 
         .login-box {
-            background-color: var(--light-blue);
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 100%;
-            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
         }
 
-        .login-header {
+        .login-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #D4AF37, #B8941F, #D4AF37);
+        }
+
+        .logo-container {
             text-align: center;
             margin-bottom: 2rem;
         }
 
+        .logo-icon {
+            width: 60px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
         .login-header h1 {
-            color: var(--gold);
+            color: #0A1F44;
             font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .login-header p {
-            color: var(--white);
-            opacity: 0.8;
+            color: #6B7280;
+            font-size: 0.95rem;
+        }
+
+        .info-message,
+        .error-message,
+        .success-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .info-message {
+            background-color: #FEF3C7;
+            color: #92400E;
+            border-left: 4px solid #F59E0B;
+        }
+
+        .info-message.show {
+            display: block;
+        }
+
+        .error-message {
+            background-color: #FEE2E2;
+            color: #991B1B;
+            border-left: 4px solid #EF4444;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background-color: #D1FAE5;
+            color: #065F46;
+            border-left: 4px solid #10B981;
+        }
+
+        .success-message.show {
+            display: block;
         }
 
         .form-group {
@@ -46,176 +116,208 @@
 
         .form-group label {
             display: block;
-            color: var(--white);
+            color: #374151;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .form-group input {
             width: 100%;
-            padding: 0.75rem;
-            border-radius: 5px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background-color: var(--deep-blue);
-            color: var(--white);
+            padding: 0.875rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: all 0.2s;
+            background-color: #F9FAFB;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: #D4AF37;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group input:disabled {
+            background-color: #F3F4F6;
+            cursor: not-allowed;
         }
 
         .login-btn {
             width: 100%;
             padding: 1rem;
-            background-color: var(--gold);
-            color: var(--deep-blue);
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #ffffff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
-        .login-btn:hover {
-            background-color: var(--gold-dark);
+        .login-btn:hover:not(:disabled) {
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .login-btn:active:not(:disabled) {
+            transform: translateY(0);
         }
 
         .login-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+            transform: none;
         }
 
         .google-btn {
-            background-color: var(--white);
-            color: var(--deep-blue);
+            background: #ffffff;
+            color: #374151;
+            border: 2px solid #E5E7EB;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .google-btn:hover {
-            background-color: #f0f0f0;
+        .google-btn:hover:not(:disabled) {
+            background: #F9FAFB;
+            border-color: #D4AF37;
         }
 
         .divider {
             text-align: center;
-            margin: 1rem 0;
-            color: var(--white);
-            opacity: 0.6;
+            margin: 1.5rem 0;
             position: relative;
         }
 
-        .divider::before,
-        .divider::after {
+        .divider::before {
             content: '';
             position: absolute;
             top: 50%;
-            width: 45%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .divider::before {
             left: 0;
-        }
-
-        .divider::after {
             right: 0;
+            height: 1px;
+            background: #E5E7EB;
         }
 
-        .error-message {
-            background-color: rgba(255, 0, 0, 0.2);
-            color: #ff6b6b;
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .info-message {
-            background-color: rgba(212, 175, 55, 0.2);
-            color: var(--gold);
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .back-link {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .back-link a {
-            color: var(--gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .back-link a:hover {
-            text-decoration: underline;
+        .divider span {
+            position: relative;
+            background: #ffffff;
+            padding: 0 1rem;
+            color: #9CA3AF;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
         .forgot-password {
             text-align: center;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
         .forgot-password a {
-            color: var(--gold);
+            color: #D4AF37;
             text-decoration: none;
             font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
         .forgot-password a:hover {
+            color: #B8941F;
             text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .back-link a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .back-link a:hover {
+            color: #D4AF37;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .login-header h1 {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
-            <div class="login-header">
-                <svg class="logo-icon-large" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 80px; margin: 0 auto 1rem;">
-                    <path d="M16 3L8 11L16 19L24 11L16 3Z" fill="white" stroke="white" stroke-width="1"/>
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 3L8 11L16 19L24 11L16 3Z" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"/>
                     <circle cx="16" cy="11" r="2.5" fill="#0A1F44"/>
-                    <line x1="16" y1="19" x2="16" y2="35" stroke="white" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M11 35L16 40L21 35" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <line x1="16" y1="19" x2="16" y2="35" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M11 35L16 40L21 35" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
+            </div>
+
+            <div class="login-header">
                 <h1>Admin Login</h1>
                 <p>Gradex Writers Dashboard</p>
             </div>
 
             <div id="errorMessage" class="error-message"></div>
-            <div id="infoMessage" class="info-message" style="display: none;"></div>
+            <div id="infoMessage" class="info-message"></div>
+            <div id="successMessage" class="success-message"></div>
 
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="admin@example.com" required autocomplete="email">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
                 </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">Login with Email</button>
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span id="loginBtnText">Sign In</span>
+                </button>
 
                 <div class="forgot-password">
                     <a href="#" id="forgotPasswordLink">Forgot Password?</a>
                 </div>
 
-                <div class="divider">OR</div>
+                <div class="divider">
+                    <span>OR</span>
+                </div>
 
                 <button type="button" class="login-btn google-btn" id="googleLoginBtn">
-                    🔐 Sign in with Google
+                    <span id="googleBtnText">🔐 Sign in with Google</span>
                 </button>
             </form>
 
@@ -234,8 +336,11 @@
         const loginForm = document.getElementById('loginForm');
         const errorMessage = document.getElementById('errorMessage');
         const infoMessage = document.getElementById('infoMessage');
+        const successMessage = document.getElementById('successMessage');
         const loginBtn = document.getElementById('loginBtn');
+        const loginBtnText = document.getElementById('loginBtnText');
         const googleLoginBtn = document.getElementById('googleLoginBtn');
+        const googleBtnText = document.getElementById('googleBtnText');
         const forgotPasswordLink = document.getElementById('forgotPasswordLink');
 
         let firebaseApp = null;
@@ -243,16 +348,17 @@
 
         // Initialize Firebase
         try {
-            if (typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
+            if (typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
                 firebaseApp = firebase.initializeApp(firebaseConfig);
                 auth = firebase.auth();
-                console.log('✅ Firebase initialized');
+                console.log('✅ Firebase initialized successfully');
             } else {
-                throw new Error('Firebase not configured');
+                throw new Error('Firebase configuration missing');
             }
         } catch (error) {
             console.error('Firebase initialization error:', error);
-            showInfo('⚠️ Firebase not configured. Please see FIREBASE_SETUP.md for instructions.');
+            showInfo('⚠️ Firebase is not configured yet. Please contact the administrator to set up authentication.');
+            loginBtn.disabled = true;
             googleLoginBtn.disabled = true;
         }
 
@@ -260,6 +366,7 @@
         if (auth) {
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
+                    showSuccess('Already logged in! Redirecting...');
                     const token = await user.getIdToken();
                     localStorage.setItem('adminToken', token);
                     localStorage.setItem('adminUser', JSON.stringify({
@@ -267,7 +374,9 @@
                         email: user.email,
                         displayName: user.displayName || user.email
                     }));
-                    window.location.href = '/admin/dashboard';
+                    setTimeout(() => {
+                        window.location.href = '/admin/dashboard';
+                    }, 1000);
                 }
             });
         }
@@ -277,22 +386,20 @@
             e.preventDefault();
             
             if (!auth) {
-                showError('Firebase authentication is not configured. Please see FIREBASE_SETUP.md');
+                showError('Firebase authentication is not configured. Please contact support.');
                 return;
             }
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            loginBtn.disabled = true;
-            loginBtn.textContent = 'Logging in...';
-            errorMessage.classList.remove('show');
+            setLoading(loginBtn, loginBtnText, true, 'Signing in...');
+            hideMessages();
 
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const token = await userCredential.user.getIdToken();
                 
-                // Save token and user info
                 localStorage.setItem('adminToken', token);
                 localStorage.setItem('adminUser', JSON.stringify({
                     uid: userCredential.user.uid,
@@ -300,51 +407,55 @@
                     displayName: userCredential.user.displayName || userCredential.user.email
                 }));
                 
-                // Redirect to dashboard
-                window.location.href = '/admin/dashboard';
+                showSuccess('✓ Login successful! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = '/admin/dashboard';
+                }, 1500);
             } catch (error) {
                 console.error('Login error:', error);
-                let message = 'Login failed. Please check your credentials.';
+                let message = 'Login failed. Please try again.';
                 
                 switch (error.code) {
                     case 'auth/user-not-found':
+                        message = '❌ No account found with this email address.';
+                        break;
                     case 'auth/wrong-password':
-                        message = 'Invalid email or password';
+                        message = '❌ Incorrect password. Please try again.';
                         break;
                     case 'auth/invalid-email':
-                        message = 'Invalid email address';
+                        message = '❌ Invalid email address format.';
                         break;
                     case 'auth/user-disabled':
-                        message = 'This account has been disabled';
+                        message = '❌ This account has been disabled.';
                         break;
                     case 'auth/too-many-requests':
-                        message = 'Too many failed attempts. Please try again later.';
+                        message = '❌ Too many failed attempts. Please try again later.';
+                        break;
+                    case 'auth/network-request-failed':
+                        message = '❌ Network error. Please check your connection.';
                         break;
                 }
                 
                 showError(message);
-            } finally {
-                loginBtn.disabled = false;
-                loginBtn.textContent = 'Login with Email';
+                setLoading(loginBtn, loginBtnText, false, 'Sign In');
             }
         });
 
         // Google Sign In
         googleLoginBtn.addEventListener('click', async () => {
             if (!auth) {
-                showError('Firebase authentication is not configured');
+                showError('Firebase authentication is not configured.');
                 return;
             }
 
-            googleLoginBtn.disabled = true;
-            googleLoginBtn.textContent = 'Opening Google Sign In...';
+            setLoading(googleLoginBtn, googleBtnText, true, 'Opening Google...');
+            hideMessages();
 
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 const result = await auth.signInWithPopup(provider);
                 const token = await result.user.getIdToken();
                 
-                // Save token and user info
                 localStorage.setItem('adminToken', token);
                 localStorage.setItem('adminUser', JSON.stringify({
                     uid: result.user.uid,
@@ -352,16 +463,16 @@
                     displayName: result.user.displayName || result.user.email
                 }));
                 
-                // Redirect to dashboard
-                window.location.href = '/admin/dashboard';
+                showSuccess('✓ Login successful! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = '/admin/dashboard';
+                }, 1500);
             } catch (error) {
                 console.error('Google sign in error:', error);
-                if (error.code !== 'auth/popup-closed-by-user') {
-                    showError('Google sign in failed. Please try again.');
+                if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                    showError('❌ Google sign in failed. Please try again.');
                 }
-            } finally {
-                googleLoginBtn.disabled = false;
-                googleLoginBtn.textContent = '🔐 Sign in with Google';
+                setLoading(googleLoginBtn, googleBtnText, false, '🔐 Sign in with Google');
             }
         });
 
@@ -370,35 +481,62 @@
             e.preventDefault();
             
             if (!auth) {
-                showError('Firebase authentication is not configured');
+                showError('Firebase authentication is not configured.');
                 return;
             }
 
             const email = document.getElementById('email').value;
             if (!email) {
-                showError('Please enter your email address first');
+                showInfo('ℹ️ Please enter your email address first, then click "Forgot Password?"');
+                document.getElementById('email').focus();
                 return;
             }
 
             try {
                 await auth.sendPasswordResetEmail(email);
-                showInfo('Password reset email sent! Check your inbox.');
+                showSuccess('✓ Password reset email sent! Check your inbox.');
             } catch (error) {
                 console.error('Password reset error:', error);
-                showError('Failed to send password reset email. Please check the email address.');
+                if (error.code === 'auth/user-not-found') {
+                    showError('❌ No account found with this email address.');
+                } else {
+                    showError('❌ Failed to send password reset email. Please try again.');
+                }
             }
         });
 
+        function setLoading(button, textElement, isLoading, text) {
+            button.disabled = isLoading;
+            if (isLoading) {
+                textElement.innerHTML = `<span class="loading-spinner"></span>${text}`;
+            } else {
+                textElement.textContent = text;
+            }
+        }
+
+        function hideMessages() {
+            errorMessage.classList.remove('show');
+            infoMessage.classList.remove('show');
+            successMessage.classList.remove('show');
+        }
+
         function showError(message) {
+            hideMessages();
             errorMessage.textContent = message;
             errorMessage.classList.add('show');
-            infoMessage.style.display = 'none';
+            setTimeout(() => errorMessage.classList.remove('show'), 8000);
         }
 
         function showInfo(message) {
+            hideMessages();
             infoMessage.textContent = message;
-            infoMessage.style.display = 'block';
-            errorMessage.classList.remove('show');
+            infoMessage.classList.add('show');
+        }
+
+        function showSuccess(message) {
+            hideMessages();
+            successMessage.textContent = message;
+            successMessage.classList.add('show');
         }
     </script>
 </body>
