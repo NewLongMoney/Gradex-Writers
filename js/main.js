@@ -12,7 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
         college: { min: 10, max: 20 },
         masters: { min: 20, max: 40 },
         phd: { min: 40, max: 80 },
-        business: { min: 30, max: 100 } // per project
+        business: { min: 30, max: 100 }, // per project
+        'training-beginner': {
+            fixedPrice: 40,
+            isTraining: true
+        },
+        'training-intermediate': {
+            fixedPrice: 80,
+            isTraining: true
+        },
+        'training-advanced': {
+            fixedPrice: 120,
+            isTraining: true
+        }
     };
 
     // Urgency multipliers
@@ -34,6 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const pageCount = parseInt(pages.value) || 1;
         const urgencyMultiplier = urgencyMultipliers[urgency.value];
         const complexityMultiplier = complexityMultipliers[complexity.value];
+
+        const servicePricing = basePricing[level];
+
+        // Handle training packages with fixed prices
+        if (servicePricing.isTraining && servicePricing.fixedPrice !== undefined) {
+            const totalPrice = servicePricing.fixedPrice;
+            estimatedCost.textContent = Math.round(totalPrice);
+            return;
+        }
 
         let basePrice;
         let totalPrice;
@@ -94,12 +115,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Update pages input when business is selected
+    // Update pages input when business or training is selected
     academicLevel.addEventListener('change', function() {
+        const selectedPricing = basePricing[this.value];
         if (this.value === 'business') {
             pages.value = 1;
             pages.disabled = true;
             pages.title = 'Business documents are priced per project';
+        } else if (selectedPricing && selectedPricing.isTraining) {
+            pages.value = 1;
+            pages.disabled = true;
+            pages.title = 'Training packages have fixed prices';
         } else {
             pages.disabled = false;
             pages.title = '';
@@ -107,10 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateQuote();
     });
 
-    // Initialize: disable pages if business is selected
-    if (academicLevel.value === 'business') {
+    // Initialize: disable pages if business or training is selected
+    const initialPricing = basePricing[academicLevel.value];
+    if (academicLevel.value === 'business' || (initialPricing && initialPricing.isTraining)) {
         pages.disabled = true;
-        pages.title = 'Business documents are priced per project';
+        pages.title = academicLevel.value === 'business' ? 'Business documents are priced per project' : 'Training packages have fixed prices';
     }
 });
 
