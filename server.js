@@ -193,22 +193,19 @@ app.post('/api/auth/verify', async (req, res) => {
 });
 
 // Get Firebase config (public endpoint for frontend)
-app.get('/api/auth/config', (req, res) => {
-    if (!firebaseInitialized) {
-        return res.json({
-            configured: false,
-            devMode: true,
-            message: 'Firebase not configured. Running in development mode.'
-        });
-    }
-
-    // Return public Firebase config from environment or config
+app.get('/api/firebase-config', (req, res) => {
+    // Return public Firebase configuration for frontend
+    // These values are safe to expose (Firebase API keys are meant to be public)
     res.json({
-        configured: true,
-        devMode: false,
-        // Note: These should come from environment variables
-        // Clients need these to initialize Firebase on frontend
-        note: 'Configure FIREBASE_* environment variables and create public/firebase-init.js'
+        config: {
+            apiKey: "AIzaSyASXa4BOuw846s_lRIs9VdUcafEJppU2uY",
+            authDomain: "gradex-66de5.firebaseapp.com",
+            projectId: "gradex-66de5",
+            storageBucket: "gradex-66de5.firebasestorage.app",
+            messagingSenderId: "74888109242",
+            appId: "1:74888109242:web:d1f044cf3b94dd824ef683",
+            measurementId: "G-E540GTTVVB"
+        }
     });
 });
 

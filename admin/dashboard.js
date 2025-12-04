@@ -3,23 +3,47 @@ let firebaseApp = null;
 let auth = null;
 
 // Initialize Firebase
-try {
-    if (typeof firebase !== 'undefined' && typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
-        firebaseApp = firebase.initializeApp(firebaseConfig);
-        auth = firebase.auth();
+async function initializeFirebase() {
+    try {
+        if (typeof firebase !== 'undefined' && typeof loadFirebaseConfig === 'function') {
+            const config = await loadFirebaseConfig();
+            if (config && config.apiKey) {
+                firebaseApp = firebase.initializeApp(config);
+                auth = firebase.auth();
+                console.log('✅ Firebase initialized in dashboard');
+            }
+        }
+    } catch (error) {
+        console.log('Firebase not available or already initialized:', error);
     }
-} catch (error) {
-    console.log('Firebase not available or already initialized');
 }
 
-// Check authentication
-const token = localStorage.getItem('adminToken');
-if (!token) {
-    window.location.href = '/admin';
-}
+// Initialize Firebase then verify auth
+initializeFirebase().then(() => {
+    if (auth) {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const newToken = await user.getIdToken();
+                localStorage.setItem('adminToken', newToken);
+                verifyAuth();
+            } else {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin';
+            }
+        });
+    } else {
+        verifyAuth();
+    }
+});
 
 // Verify token with backend
 async function verifyAuth() {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+        window.location.href = '/admin';
+        return;
+    }
     try {
         const response = await fetch('/api/auth/verify', {
             method: 'POST',
@@ -47,25 +71,6 @@ async function verifyAuth() {
         localStorage.removeItem('adminUser');
         window.location.href = '/admin';
     }
-}
-
-// Monitor Firebase auth state
-if (auth) {
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            // Update token if needed
-            const newToken = await user.getIdToken();
-            localStorage.setItem('adminToken', newToken);
-            verifyAuth();
-        } else {
-            localStorage.removeItem('adminToken');
-            localStorage.removeItem('adminUser');
-            window.location.href = '/admin';
-        }
-    });
-} else {
-    // No Firebase, just verify token
-    verifyAuth();
 }
 
 // DOM elements

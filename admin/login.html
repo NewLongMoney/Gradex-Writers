@@ -330,7 +330,22 @@
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="../public/firebase-init.js"></script>
+    
+    <script>
+        let firebaseConfig = null;
+
+        // Load Firebase config from API
+        async function loadFirebaseConfig() {
+            try {
+                const response = await fetch('/api/firebase-config');
+                const data = await response.json();
+                return data.config;
+            } catch (error) {
+                console.error('Failed to load Firebase config:', error);
+                return null;
+            }
+        }
+    </script>
     
     <script>
         const loginForm = document.getElementById('loginForm');
@@ -347,39 +362,43 @@
         let auth = null;
 
         // Initialize Firebase
-        try {
-            if (typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
-                firebaseApp = firebase.initializeApp(firebaseConfig);
-                auth = firebase.auth();
-                console.log('✅ Firebase initialized successfully');
-            } else {
-                throw new Error('Firebase configuration missing');
+        async function initializeFirebase() {
+            try {
+                const config = await loadFirebaseConfig();
+                if (config && config.apiKey) {
+                    firebaseApp = firebase.initializeApp(config);
+                    auth = firebase.auth();
+                    console.log('✅ Firebase initialized successfully');
+                    
+                    // Check if already logged in
+                    auth.onAuthStateChanged(async (user) => {
+                        if (user) {
+                            showSuccess('Already logged in! Redirecting...');
+                            const token = await user.getIdToken();
+                            localStorage.setItem('adminToken', token);
+                            localStorage.setItem('adminUser', JSON.stringify({
+                                uid: user.uid,
+                                email: user.email,
+                                displayName: user.displayName || user.email
+                            }));
+                            setTimeout(() => {
+                                window.location.href = '/admin/dashboard';
+                            }, 1000);
+                        }
+                    });
+                } else {
+                    throw new Error('Firebase configuration missing');
+                }
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+                showInfo('⚠️ Firebase is not configured yet. Please contact the administrator to set up authentication.');
+                loginBtn.disabled = true;
+                googleLoginBtn.disabled = true;
             }
-        } catch (error) {
-            console.error('Firebase initialization error:', error);
-            showInfo('⚠️ Firebase is not configured yet. Please contact the administrator to set up authentication.');
-            loginBtn.disabled = true;
-            googleLoginBtn.disabled = true;
         }
 
-        // Check if already logged in
-        if (auth) {
-            auth.onAuthStateChanged(async (user) => {
-                if (user) {
-                    showSuccess('Already logged in! Redirecting...');
-                    const token = await user.getIdToken();
-                    localStorage.setItem('adminToken', token);
-                    localStorage.setItem('adminUser', JSON.stringify({
-                        uid: user.uid,
-                        email: user.email,
-                        displayName: user.displayName || user.email
-                    }));
-                    setTimeout(() => {
-                        window.location.href = '/admin/dashboard';
-                    }, 1000);
-                }
-            });
-        }
+        // Initialize on page load
+        initializeFirebase();
 
         // Email/Password Login
         loginForm.addEventListener('submit', async (e) => {

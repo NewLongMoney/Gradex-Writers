@@ -463,7 +463,19 @@
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="../public/firebase-init.js"></script>
+    <script>
+        // Load Firebase config from API
+        async function loadFirebaseConfig() {
+            try {
+                const response = await fetch('/api/firebase-config');
+                const data = await response.json();
+                return data.config;
+            } catch (error) {
+                console.error('Failed to load Firebase config:', error);
+                return null;
+            }
+        }
+    </script>
     <script src="dashboard.js"></script>
 </body>
 </html>
