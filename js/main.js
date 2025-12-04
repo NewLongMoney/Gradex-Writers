@@ -139,6 +139,24 @@ document.addEventListener('DOMContentLoaded', function() {
         pages.disabled = true;
         pages.title = academicLevel.value === 'business' ? 'Business documents are priced per project' : 'Training packages have fixed prices';
     }
+
+    // Collapsible sections
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            const isCollapsed = content.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                content.classList.remove('collapsed');
+                this.classList.add('active');
+            } else {
+                content.classList.add('collapsed');
+                this.classList.remove('active');
+            }
+        });
+    });
 });
 
 // Add scroll effect to navbar
