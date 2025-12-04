@@ -8,30 +8,6 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/admin$",
-      "dest": "/admin/login.html"
-    },
-    {
-      "src": "/admin/dashboard",
-      "dest": "/admin/dashboard.html"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "/admin/$1"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/uploads/$1"
-    },
-    {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
-    },
-    {
       "src": "/css/(.*)",
       "dest": "/css/$1"
     },
@@ -40,20 +16,52 @@
       "dest": "/js/$1"
     },
     {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/admin/login.html",
+      "dest": "/admin/login.html"
+    },
+    {
+      "src": "/admin/dashboard.html",
+      "dest": "/admin/dashboard.html"
+    },
+    {
+      "src": "/admin/(.*\\.(js|css|html))",
+      "dest": "/admin/$1"
+    },
+    {
+      "src": "/admin/dashboard",
+      "dest": "/admin/dashboard.html"
+    },
+    {
+      "src": "/admin/?",
+      "dest": "/admin/login.html"
+    },
+    {
       "src": "/blog.html",
       "dest": "/blog.html"
     },
     {
-      "src": "/(.*\\.(css|js|html|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/$",
+      "src": "/index.html",
       "dest": "/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/server.js"
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*\\.(css|js|html|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "dest": "/$1"
     }
   ]
 }
