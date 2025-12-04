@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Gradex Writers</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--dark-blue) 100%);
+        }
+
+        .login-box {
+            background-color: var(--light-blue);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            border: 2px solid var(--gold);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background-color: var(--deep-blue);
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--gold);
+            color: var(--deep-blue);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .login-btn:hover {
+            background-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .google-btn {
+            background-color: var(--white);
+            color: var(--deep-blue);
+        }
+
+        .google-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--white);
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .error-message {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: #ff6b6b;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .info-message {
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .back-link a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .forgot-password a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <svg class="logo-icon-large" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 80px; margin: 0 auto 1rem;">
+                    <path d="M16 3L8 11L16 19L24 11L16 3Z" fill="white" stroke="white" stroke-width="1"/>
+                    <circle cx="16" cy="11" r="2.5" fill="#0A1F44"/>
+                    <line x1="16" y1="19" x2="16" y2="35" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M11 35L16 40L21 35" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <h1>Admin Login</h1>
+                <p>Gradex Writers Dashboard</p>
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+            <div id="infoMessage" class="info-message" style="display: none;"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">Login with Email</button>
+
+                <div class="forgot-password">
+                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+
+                <div class="divider">OR</div>
+
+                <button type="button" class="login-btn google-btn" id="googleLoginBtn">
+                    🔐 Sign in with Google
+                </button>
+            </form>
+
+            <div class="back-link">
+                <a href="/">← Back to Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="../public/firebase-init.js"></script>
+    
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const infoMessage = document.getElementById('infoMessage');
+        const loginBtn = document.getElementById('loginBtn');
+        const googleLoginBtn = document.getElementById('googleLoginBtn');
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+        let firebaseApp = null;
+        let auth = null;
+
+        // Initialize Firebase
+        try {
+            if (typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
+                firebaseApp = firebase.initializeApp(firebaseConfig);
+                auth = firebase.auth();
+                console.log('✅ Firebase initialized');
+            } else {
+                throw new Error('Firebase not configured');
+            }
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+            showInfo('⚠️ Firebase not configured. Please see FIREBASE_SETUP.md for instructions.');
+            googleLoginBtn.disabled = true;
+        }
+
+        // Check if already logged in
+        if (auth) {
+            auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    const token = await user.getIdToken();
+                    localStorage.setItem('adminToken', token);
+                    localStorage.setItem('adminUser', JSON.stringify({
+                        uid: user.uid,
+                        email: user.email,
+                        displayName: user.displayName || user.email
+                    }));
+                    window.location.href = '/admin/dashboard';
+                }
+            });
+        }
+
+        // Email/Password Login
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!auth) {
+                showError('Firebase authentication is not configured. Please see FIREBASE_SETUP.md');
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+            errorMessage.classList.remove('show');
+
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const token = await userCredential.user.getIdToken();
+                
+                // Save token and user info
+                localStorage.setItem('adminToken', token);
+                localStorage.setItem('adminUser', JSON.stringify({
+                    uid: userCredential.user.uid,
+                    email: userCredential.user.email,
+                    displayName: userCredential.user.displayName || userCredential.user.email
+                }));
+                
+                // Redirect to dashboard
+                window.location.href = '/admin/dashboard';
+            } catch (error) {
+                console.error('Login error:', error);
+                let message = 'Login failed. Please check your credentials.';
+                
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                    case 'auth/wrong-password':
+                        message = 'Invalid email or password';
+                        break;
+                    case 'auth/invalid-email':
+                        message = 'Invalid email address';
+                        break;
+                    case 'auth/user-disabled':
+                        message = 'This account has been disabled';
+                        break;
+                    case 'auth/too-many-requests':
+                        message = 'Too many failed attempts. Please try again later.';
+                        break;
+                }
+                
+                showError(message);
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Login with Email';
+            }
+        });
+
+        // Google Sign In
+        googleLoginBtn.addEventListener('click', async () => {
+            if (!auth) {
+                showError('Firebase authentication is not configured');
+                return;
+            }
+
+            googleLoginBtn.disabled = true;
+            googleLoginBtn.textContent = 'Opening Google Sign In...';
+
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                const result = await auth.signInWithPopup(provider);
+                const token = await result.user.getIdToken();
+                
+                // Save token and user info
+                localStorage.setItem('adminToken', token);
+                localStorage.setItem('adminUser', JSON.stringify({
+                    uid: result.user.uid,
+                    email: result.user.email,
+                    displayName: result.user.displayName || result.user.email
+                }));
+                
+                // Redirect to dashboard
+                window.location.href = '/admin/dashboard';
+            } catch (error) {
+                console.error('Google sign in error:', error);
+                if (error.code !== 'auth/popup-closed-by-user') {
+                    showError('Google sign in failed. Please try again.');
+                }
+            } finally {
+                googleLoginBtn.disabled = false;
+                googleLoginBtn.textContent = '🔐 Sign in with Google';
+            }
+        });
+
+        // Forgot Password
+        forgotPasswordLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            if (!auth) {
+                showError('Firebase authentication is not configured');
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            if (!email) {
+                showError('Please enter your email address first');
+                return;
+            }
+
+            try {
+                await auth.sendPasswordResetEmail(email);
+                showInfo('Password reset email sent! Check your inbox.');
+            } catch (error) {
+                console.error('Password reset error:', error);
+                showError('Failed to send password reset email. Please check the email address.');
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            infoMessage.style.display = 'none';
+        }
+
+        function showInfo(message) {
+            infoMessage.textContent = message;
+            infoMessage.style.display = 'block';
+            errorMessage.classList.remove('show');
+        }
+    </script>
+</body>
+</html>

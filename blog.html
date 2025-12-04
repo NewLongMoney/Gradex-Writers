@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gradex Writers Blog - Writing tips, guides, and insights from professional writers">
+    <title>Blog - Gradex Writers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--dark-blue) 100%);
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .blog-filters {
+            background-color: var(--light-blue);
+            padding: 2rem 0;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background-color: var(--deep-blue);
+            color: var(--white);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--gold);
+            color: var(--deep-blue);
+            border-color: var(--gold);
+        }
+
+        .blog-content {
+            padding: 3rem 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--dark-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--gold);
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-category {
+            display: inline-block;
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .blog-card-excerpt {
+            color: var(--white);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.9rem;
+            color: var(--white);
+            opacity: 0.7;
+        }
+
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .no-articles {
+            text-align: center;
+            padding: 3rem;
+            color: var(--white);
+            opacity: 0.7;
+        }
+
+        .no-articles h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Article Detail Modal */
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .article-modal.show {
+            display: block;
+        }
+
+        .article-detail {
+            background-color: var(--light-blue);
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .article-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .article-close:hover {
+            background-color: var(--gold);
+            color: var(--deep-blue);
+        }
+
+        .article-detail-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--dark-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--gold);
+        }
+
+        .article-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-detail-content {
+            padding: 3rem;
+        }
+
+        .article-detail-category {
+            display: inline-block;
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-detail-title {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-detail-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        .article-detail-text {
+            color: var(--white);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-detail {
+                margin: 1rem;
+            }
+
+            .article-detail-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-detail-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L6 8L12 14L18 8L12 2Z" fill="white" stroke="white" stroke-width="0.5"/>
+                    <circle cx="12" cy="8" r="1.5" fill="#0A1F44"/>
+                    <line x1="12" y1="14" x2="12" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M9 26L12 29L15 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span class="logo-text">Gradex Writers</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#pricing">Pricing</a></li>
+                <li><a href="/blog.html" class="active">Blog</a></li>
+                <li><a href="/#quote" class="btn-primary">Get Quote</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <p>Expert insights, tips, and guides on professional writing</p>
+        </div>
+    </section>
+
+    <!-- Blog Filters -->
+    <section class="blog-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All Articles</button>
+                <button class="filter-btn" data-category="Academic Writing">Academic Writing</button>
+                <button class="filter-btn" data-category="Business Writing">Business Writing</button>
+                <button class="filter-btn" data-category="Technical Writing">Technical Writing</button>
+                <button class="filter-btn" data-category="Creative Writing">Creative Writing</button>
+                <button class="filter-btn" data-category="Tips & Guides">Tips & Guides</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+            <div id="blogGrid" class="blog-grid">
+                <div class="loading">Loading articles...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Detail Modal -->
+    <div id="articleModal" class="article-modal">
+        <div class="article-detail">
+            <button class="article-close" id="closeArticle">&times;</button>
+            <div id="articleDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4L8 8L12 12L16 8L12 4Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="12" cy="8" r="1.5" fill="white"/>
+                            <line x1="12" y1="12" x2="12" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M10 28L12 30L14 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="logo-text">Gradex Writers</span>
+                    </div>
+                    <p>We Write. You Excel.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/#services">Academic Writing</a></li>
+                        <li><a href="/#services">Business Writing</a></li>
+                        <li><a href="/#services">Technical Writing</a></li>
+                        <li><a href="/#services">Creative Writing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/#pricing">Pricing</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/#quote">Get Quote</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">24/7 Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gradex Writers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/blog.js"></script>
+</body>
+</html>
+
