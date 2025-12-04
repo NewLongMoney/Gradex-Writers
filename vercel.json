@@ -4,13 +4,6 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "."
-      }
     }
   ],
   "routes": [
@@ -19,7 +12,7 @@
       "dest": "/server.js"
     },
     {
-      "src": "/admin",
+      "src": "/admin$",
       "dest": "/admin/login.html"
     },
     {
@@ -27,24 +20,37 @@
       "dest": "/admin/dashboard.html"
     },
     {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
       "src": "/uploads/(.*)",
       "dest": "/uploads/$1"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
     },
     {
       "src": "/(.*\\.(css|js|html|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
       "dest": "/$1"
     },
     {
-      "src": "/",
-      "dest": "/index.html"
+      "src": "/blog.html",
+      "dest": "/blog.html"
     },
     {
       "src": "/(.*)",
       "dest": "/server.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
 
