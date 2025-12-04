@@ -33,12 +33,15 @@ body {
 
 /* Navigation */
 .navbar {
-    background-color: var(--deep-blue);
+    background: rgba(10, 31, 68, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar .container {
@@ -52,8 +55,9 @@ body {
     align-items: center;
     gap: 10px;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 700;
     color: var(--white);
+    letter-spacing: -0.02em;
 }
 
 .logo-icon {
@@ -94,31 +98,25 @@ body {
     position: relative;
 }
 
-.dropdown-arrow {
-    font-size: 0.7rem;
-    margin-left: 0.3rem;
-    transition: transform 0.3s;
-}
-
-.nav-dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg);
-}
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--light-blue);
+    background: rgba(26, 51, 87, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     min-width: 220px;
     list-style: none;
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 0.75rem 0;
+    margin-top: 0.75rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
 }
 
@@ -137,13 +135,35 @@ body {
     padding: 0.75rem 1.5rem;
     color: var(--white);
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 400;
+    position: relative;
+    margin: 0.25rem 0.5rem;
+    border-radius: 10px;
+}
+
+.dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .dropdown-menu a:hover {
-    background-color: var(--gold);
-    color: var(--deep-blue);
+    background: rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--gold);
+    transform: translateX(5px);
+}
+
+.dropdown-menu a:hover::before {
+    opacity: 1;
 }
 
 .btn-primary {
@@ -250,10 +270,14 @@ body {
 }
 
 .brand-name {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
-    color: var(--white);
-    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
 }
 
 .slogan {
@@ -430,13 +454,14 @@ section {
 }
 
 .service-card {
-    background: linear-gradient(135deg, rgba(26, 51, 87, 0.8) 0%, rgba(8, 24, 47, 0.9) 100%);
-    backdrop-filter: blur(10px);
+    background: rgba(26, 51, 87, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: 2.5rem;
-    border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
 }
@@ -447,19 +472,36 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
     opacity: 0;
-    transition: opacity 0.4s;
+    transition: opacity 0.5s;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
 }
 
 .service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-    border-color: var(--gold);
+    transform: translateY(-10px) scale(1.03);
+    background: rgba(26, 51, 87, 0.6);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(212, 175, 55, 0.1);
 }
 
-.service-card:hover::before {
+.service-card:hover::before,
+.service-card:hover::after {
     opacity: 1;
 }
 
@@ -512,15 +554,16 @@ section {
 }
 
 .pricing-card {
-    background: linear-gradient(135deg, rgba(26, 51, 87, 0.85) 0%, rgba(8, 24, 47, 0.95) 100%);
-    backdrop-filter: blur(10px);
+    background: rgba(26, 51, 87, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: 24px;
     text-align: center;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     overflow: hidden;
 }
 
@@ -530,26 +573,46 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
     opacity: 0;
-    transition: opacity 0.4s;
+    transition: opacity 0.5s;
+}
+
+.pricing-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
 }
 
 .pricing-card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 25px 50px rgba(212, 175, 55, 0.25);
-    border-color: var(--gold);
+    transform: translateY(-12px) scale(1.04);
+    background: rgba(26, 51, 87, 0.6);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 25px 60px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(212, 175, 55, 0.1);
 }
 
-.pricing-card:hover::before {
+.pricing-card:hover::before,
+.pricing-card:hover::after {
     opacity: 1;
 }
 
 .pricing-card.featured {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(8, 24, 47, 0.95) 100%);
-    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .pricing-card.featured::before {
@@ -639,7 +702,13 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     margin-top: 3rem;
-    background-color: var(--light-blue);
+    background: rgba(26, 51, 87, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     padding: 3rem;
     border-radius: 10px;
 }
@@ -727,14 +796,41 @@ section {
 
 .feature-item {
     text-align: center;
-    padding: 2rem;
-    background-color: var(--light-blue);
-    border-radius: 10px;
-    transition: transform 0.3s;
+    padding: 2.5rem;
+    background: rgba(26, 51, 87, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
 }
 
 .feature-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(26, 51, 87, 0.6);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.feature-item:hover::before {
+    opacity: 1;
 }
 
 .feature-icon {
