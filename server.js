@@ -13,28 +13,43 @@ const PORT = process.env.PORT || 3000;
 // Initialize Firebase Admin SDK
 let firebaseInitialized = false;
 
-// Try to initialize Firebase Admin with service account
-const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH || './firebase-config.json';
-
-if (fs.existsSync(serviceAccountPath)) {
+// Try environment variables first (for Vercel/Production)
+if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
     try {
-        const serviceAccount = require(serviceAccountPath);
         admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
+            credential: admin.credential.cert({
+                projectId: process.env.FIREBASE_PROJECT_ID,
+                privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+                clientEmail: process.env.FIREBASE_CLIENT_EMAIL
+            })
         });
         firebaseInitialized = true;
-        console.log('✅ Firebase Admin SDK initialized with service account');
+        console.log('✅ Firebase Admin SDK initialized with environment variables');
     } catch (error) {
-        console.error('❌ Error initializing Firebase Admin SDK:', error.message);
-        console.log('⚠️  Running in development mode without Firebase authentication');
+        console.error('❌ Error initializing Firebase with env vars:', error.message);
     }
-} else {
-    console.log('⚠️  firebase-config.json not found. Running in development mode.');
-    console.log('📝 To enable Firebase authentication:');
-    console.log('   1. Create a Firebase project at https://console.firebase.google.com');
-    console.log('   2. Download your service account JSON');
-    console.log('   3. Save it as firebase-config.json in the project root');
-    console.log('   4. Update public/firebase-init.js with your Firebase config');
+}
+// Fallback to firebase-config.json for local development
+else {
+    const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH || './firebase-config.json';
+    if (fs.existsSync(serviceAccountPath)) {
+        try {
+            const serviceAccount = require(serviceAccountPath);
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount)
+            });
+            firebaseInitialized = true;
+            console.log('✅ Firebase Admin SDK initialized with service account');
+        } catch (error) {
+            console.error('❌ Error initializing Firebase Admin SDK:', error.message);
+        }
+    }
+}
+
+if (!firebaseInitialized) {
+    console.log('⚠️  Firebase not configured. Set environment variables or add firebase-config.json');
+    console.log('📝 For Vercel: Add FIREBASE_PROJECT_ID, FIREBASE_PRIVATE_KEY, FIREBASE_CLIENT_EMAIL');
+    console.log('📝 For local: Add firebase-config.json file');
 }
 
 // Middleware
@@ -331,37 +346,42 @@ app.get('/admin/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin', 'dashboard.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log('\n' + '='.repeat(60));
-    console.log('  ✍️  GRADEX WRITERS - Server Started Successfully!');
-    console.log('='.repeat(60));
-    console.log('\n📍 URLs:');
-    console.log(`   Main Website:    http://localhost:${PORT}`);
-    console.log(`   Blog:            http://localhost:${PORT}/blog.html`);
-    console.log(`   Admin Dashboard: http://localhost:${PORT}/admin`);
-    
-    if (firebaseInitialized) {
-        console.log('\n🔥 Firebase Authentication: ENABLED');
-        console.log('   Use Firebase Auth to login');
-    } else {
-        console.log('\n⚠️  Firebase Authentication: NOT CONFIGURED');
-        console.log('   Running in development mode');
-        console.log('\n📝 To enable Firebase:');
-        console.log('   1. Create Firebase project at https://console.firebase.google.com');
-        console.log('   2. Download service account JSON as firebase-config.json');
-        console.log('   3. Create public/firebase-init.js with your config');
-        console.log('   4. Restart the server');
-    }
-    
-    console.log('\n📚 Documentation:');
-    console.log('   Quick Start: QUICK_START.md');
-    console.log('   Firebase Setup: FIREBASE_SETUP.md');
-    console.log('   Features:    FEATURES.md');
-    console.log('\n' + '='.repeat(60));
-    console.log('  Press Ctrl+C to stop the server');
-    console.log('='.repeat(60) + '\n');
-});
+// For Vercel serverless function
+if (process.env.VERCEL) {
+    module.exports = app;
+} else {
+    // Start server locally
+    app.listen(PORT, () => {
+        console.log('\n' + '='.repeat(60));
+        console.log('  ✍️  GRADEX WRITERS - Server Started Successfully!');
+        console.log('='.repeat(60));
+        console.log('\n📍 URLs:');
+        console.log(`   Main Website:    http://localhost:${PORT}`);
+        console.log(`   Blog:            http://localhost:${PORT}/blog.html`);
+        console.log(`   Admin Dashboard: http://localhost:${PORT}/admin`);
+        
+        if (firebaseInitialized) {
+            console.log('\n🔥 Firebase Authentication: ENABLED');
+            console.log('   Use Firebase Auth to login');
+        } else {
+            console.log('\n⚠️  Firebase Authentication: NOT CONFIGURED');
+            console.log('   Running in development mode');
+            console.log('\n📝 To enable Firebase:');
+            console.log('   1. Create Firebase project at https://console.firebase.google.com');
+            console.log('   2. Download service account JSON as firebase-config.json');
+            console.log('   3. Create public/firebase-init.js with your config');
+            console.log('   4. Restart the server');
+        }
+        
+        console.log('\n📚 Documentation:');
+        console.log('   Quick Start: QUICK_START.md');
+        console.log('   Firebase Setup: FIREBASE_SETUP.md');
+        console.log('   Vercel Setup: VERCEL_SETUP.md');
+        console.log('\n' + '='.repeat(60));
+        console.log('  Press Ctrl+C to stop the server');
+        console.log('='.repeat(60) + '\n');
+    });
+}
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
