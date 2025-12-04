@@ -343,11 +343,11 @@ app.get('/admin/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin', 'dashboard.html'));
 });
 
-// For Vercel serverless function
-if (process.env.VERCEL) {
-    module.exports = app;
-} else {
-    // Start server locally
+// Export for Vercel
+module.exports = app;
+
+// Start server locally only if not in Vercel
+if (!process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log('\n' + '='.repeat(60));
         console.log('  ✍️  GRADEX WRITERS - Server Started Successfully!');
