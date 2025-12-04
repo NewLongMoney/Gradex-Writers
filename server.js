@@ -10,6 +10,20 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Static asset caching strategy
+const staticOptions = {
+    setHeaders: (res, filePath) => {
+        const ext = path.extname(filePath);
+        if (ext === '.html') {
+            // Always fetch latest HTML and prevent stale shells
+            res.setHeader('Cache-Control', 'no-store, must-revalidate');
+        } else {
+            // Allow aggressive caching for static assets (with versioned URLs)
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+    }
+};
+
 // Initialize Firebase Admin SDK
 let firebaseInitialized = false;
 
@@ -56,7 +70,7 @@ if (!firebaseInitialized) {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname), staticOptions));
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
