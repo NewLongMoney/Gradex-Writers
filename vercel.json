@@ -40,12 +40,16 @@
       "dest": "/js/$1"
     },
     {
+      "src": "/blog.html",
+      "dest": "/blog.html"
+    },
+    {
       "src": "/(.*\\.(css|js|html|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
       "dest": "/$1"
     },
     {
-      "src": "/blog.html",
-      "dest": "/blog.html"
+      "src": "/$",
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",
@@ -53,4 +57,3 @@
     }
   ]
 }
-
