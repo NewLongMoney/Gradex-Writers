@@ -1,220 +1,125 @@
-# Gradex Writers - Professional Writing Services
+# Gradex Writers - Marketing Website
 
-A modern, full-featured website for professional writing services with an admin dashboard for content management.
+A professional marketing website for Gradex Writers, a global online writing service platform. The website showcases services, features, pricing, and includes an interactive quote calculator.
+
+## Design
+
+The website features a modern, professional design with the following color scheme:
+- **Deep Blue (Background)**: #0A1F44
+- **Gold (Accent/Text)**: #D4AF37
+- **White (Text Highlights)**: #FFFFFF
 
 ## Features
 
-### Public Website
-- ✨ Modern, responsive design with beautiful UI
-- 📊 Interactive pricing calculator
-- 🎨 Service showcase with detailed information
-- 📝 Blog/Portfolio section with article filtering
-- 🌐 Professional landing page
+### 🎯 Hero Section
+- Prominent brand logo with pen icon
+- Compelling slogan: "We Write. You Excel."
+- Service highlights and trust indicators
+- Call-to-action buttons
 
-### Admin Dashboard
-- 🔐 Secure authentication system
-- ✍️ Create, edit, and delete articles
-- 📰 Manage blog posts with categories
-- 🎯 Draft and publish workflow
-- 📱 Responsive admin interface
+### 📚 Services Section
+- **Academic Writing**: Essays, research papers, thesis projects
+- **Research Writing**: Literature reviews, case studies, data analysis
+- **Business Writing**: Reports, proposals, technical documentation
 
-## Tech Stack
+### ⚡ Key Features
+- **Instant Quote Calculator**: Real-time price estimation based on service type, pages, and urgency
+- **Order Management Dashboard**: Track project progress
+- **Secure Payment Gateway**: Multiple payment options
+- **AI-Powered Matching**: Automatic writer assignment
+- **24/7 Live Chat Support**: Round-the-clock assistance
+- **Quality Guarantee**: Plagiarism-free and confidential
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express
-- **Database:** SQLite
-- **Authentication:** JWT (JSON Web Tokens)
-- **File Upload:** Multer
+### 💰 Pricing
+Transparent pricing structure:
+- High School: $5 - $10 per page
+- College Level: $10 - $20 per page
+- Master's Level: $20 - $40 per page
+- PhD/Technical: $40 - $80 per page
+- Business Documents: $30 - $100 per project
 
-## Installation
+### 📊 About Section
+Information about the global writing industry, market value, and growth potential.
 
-1. **Clone the repository:**
-```bash
-git clone <repository-url>
-cd gradex-writers-mvp
-```
+## Interactive Features
 
-2. **Install dependencies:**
-```bash
-npm install
-```
+1. **Quote Calculator**: 
+   - Select service type
+   - Enter number of pages
+   - Choose urgency level
+   - Get instant price estimate
 
-3. **Start the server:**
-```bash
-npm start
-```
+2. **Smooth Scrolling**: Navigation links smoothly scroll to sections
 
-For development with auto-reload:
-```bash
-npm run dev
-```
+3. **Responsive Design**: Fully responsive across all devices
 
-4. **Access the website:**
-- Main website: http://localhost:3000
-- Blog: http://localhost:3000/blog.html
-- Admin login: http://localhost:3000/admin
+4. **Animations**: Fade-in animations for service cards and features
 
-## Authentication
-
-This project uses **Firebase Authentication** for secure admin access.
-
-### Setup Required:
-Follow the quick setup guide in **FIREBASE_QUICK_START.md** to:
-1. Create a Firebase project (free)
-2. Enable Email/Password and Google Sign-In
-3. Get your configuration keys
-4. Create your first admin user
-
-**Setup time:** ~10 minutes
-
-📝 **Quick Start:** See `FIREBASE_QUICK_START.md`  
-📚 **Detailed Guide:** See `FIREBASE_SETUP.md`
-
-## Project Structure
+## File Structure
 
 ```
-gradex-writers-mvp/
-├── admin/                  # Admin dashboard files
-│   ├── login.html         # Admin login page
-│   ├── dashboard.html     # Admin dashboard
-│   └── dashboard.js       # Dashboard functionality
+Gradex-Writers/
+├── index.html          # Main HTML file with all sections
 ├── css/
-│   └── style.css          # Main stylesheet
+│   └── style.css       # Complete styling with brand colors
 ├── js/
-│   ├── main.js            # Homepage scripts
-│   └── blog.js            # Blog functionality
-├── uploads/               # Uploaded images directory
-├── index.html             # Main landing page
-├── blog.html              # Blog/portfolio page
-├── server.js              # Express server & API
-├── database.db            # SQLite database (auto-created)
-└── package.json           # Dependencies
+│   └── main.js         # Interactive features and quote calculator
+├── api/
+│   └── submit-quote.js # Serverless function for form submissions
+├── package.json        # Node.js dependencies
+└── README.md           # This file
 ```
 
-## API Endpoints
+## Email Setup (Required for Form Submissions)
 
-### Authentication
-- `POST /api/auth/login` - Admin login
-- `GET /api/auth/verify` - Verify JWT token
+The quote form sends emails with file attachments to **tmmchess@gmail.com**. To enable this functionality:
 
-### Articles (Public)
-- `GET /api/articles` - Get all published articles
-- `GET /api/articles/:slug` - Get single article by slug
+### 1. Set up Gmail App Password
 
-### Articles (Admin - requires authentication)
-- `GET /api/admin/articles` - Get all articles (including drafts)
-- `POST /api/admin/articles` - Create new article
-- `PUT /api/admin/articles/:id` - Update article
-- `DELETE /api/admin/articles/:id` - Delete article
+1. Go to your Google Account settings
+2. Enable 2-Step Verification
+3. Go to App Passwords (https://myaccount.google.com/apppasswords)
+4. Generate a new app password for "Mail"
+5. Copy the 16-character password
 
-### File Upload (Admin)
-- `POST /api/admin/upload` - Upload images
+### 2. Configure Vercel Environment Variables
+
+In your Vercel project dashboard:
+
+1. Go to **Settings** → **Environment Variables**
+2. Add the following variables:
+   - `EMAIL_USER`: `tmmchess@gmail.com`
+   - `EMAIL_PASS`: `#1tmmchess` (or your Gmail app password if 2FA is enabled)
+
+**Note:** If you have 2-Step Verification enabled on your Gmail account, you'll need to use a Gmail App Password instead of your regular password. Generate one at https://myaccount.google.com/apppasswords
+
+### 3. Deploy
+
+After setting environment variables, redeploy your project. The form will now send emails with attachments to tmmchess@gmail.com when users submit quote requests.
+
+## Browser Compatibility
+
+Works on all modern browsers including:
+- Chrome
+- Firefox
+- Safari
+- Edge
 
 ## Usage
 
-### Creating Articles
+1. Open `index.html` in your web browser
+2. Navigate through sections using the navigation menu
+3. Use the quote calculator to get instant pricing
+4. Explore services, features, and pricing information
 
-1. Log in to the admin dashboard at `/admin`
-2. Click "New Article" button
-3. Fill in the article details:
-   - **Title:** Article title (required)
-   - **Excerpt:** Short description
-   - **Content:** Main article content (required)
-   - **Category:** Select from predefined categories
-   - **Author:** Author name
-   - **Image URL:** Optional image URL
-   - **Status:** Draft or Published
-4. Click "Save Article"
+## Industry Information
 
-### Managing Articles
-
-- **Edit:** Click the "Edit" button on any article card
-- **Delete:** Click the "Delete" button (confirmation required)
-- **View:** Published articles appear on the blog page
-
-### Blog Features
-
-- Filter articles by category
-- Click on any article to read full content
-- Responsive design for all devices
-- Direct article links (shareable URLs)
-
-## Security Notes
-
-⚠️ **Before deploying to production:**
-
-1. Change the JWT secret in `server.js`:
-```javascript
-const JWT_SECRET = 'your-secure-random-secret-here';
-```
-
-2. Update admin password:
-   - Use a strong password
-   - Consider using environment variables
-
-3. Enable HTTPS in production
-
-4. Add rate limiting for API endpoints
-
-5. Implement proper error logging
-
-## Customization
-
-### Changing Colors
-
-Edit the CSS variables in `css/style.css`:
-
-```css
-:root {
-    --deep-blue: #0A1F44;
-    --gold: #D4AF37;
-    --white: #FFFFFF;
-    --dark-blue: #08182F;
-    --light-blue: #1a3357;
-    --gold-dark: #B8941F;
-}
-```
-
-### Adding New Categories
-
-Update the category dropdown in:
-- `admin/dashboard.html` (line ~286)
-- `blog.html` (line ~102)
-
-## Troubleshooting
-
-### Database Issues
-If you encounter database errors, delete `database.db` and restart the server to recreate it.
-
-### Port Already in Use
-Change the port in `server.js`:
-```javascript
-const PORT = process.env.PORT || 3000;
-```
-
-### File Upload Issues
-Ensure the `uploads/` directory exists and has write permissions.
-
-## Future Enhancements
-
-- [ ] Rich text editor for articles (TinyMCE/Quill)
-- [ ] Image upload directly from dashboard
-- [ ] Article search functionality
-- [ ] User comments system
-- [ ] SEO metadata management
-- [ ] Analytics dashboard
-- [ ] Email notifications
-- [ ] Multiple admin roles
-- [ ] Article scheduling
+Based on the Global Online Writing Industry Investment Report:
+- The industry is valued in billions annually
+- Thousands of writers worldwide
+- Growing market driven by international students, remote education, and online freelancing
+- Significant growth potential with globalization and e-learning
 
 ## License
 
-MIT License - feel free to use this project for your own purposes.
-
-## Support
-
-For issues or questions, please open an issue in the repository.
-
----
-
-**We Write. You Excel.** ✍️
+© 2026 Gradex Writers made by captivart agency (captivart.art). All rights reserved.

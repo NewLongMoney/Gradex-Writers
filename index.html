@@ -1,349 +1,840 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://googletagmanager.com/gtag/js?id=G-315CS24HND"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-315CS24HND');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gradex Writers - Professional writing services for academic, business, and technical content. We Write. You Excel.">
     <title>Gradex Writers - Professional Writing Services</title>
-    <link rel="stylesheet" href="css/style.css?v=20251204">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
             <div class="logo">
-                <img src="/public/logo.jpeg" alt="Gradex Writers Logo" class="logo-image">
+                <img src="/Gradex%20logo.jpg" alt="Gradex Writers" class="logo-img">
             </div>
-            <ul class="nav-links">
-                <li class="nav-dropdown">
-                    <a href="#services">Services</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#services">Academic Writing</a></li>
-                        <li><a href="#services">Business Writing</a></li>
-                        <li><a href="#services">Technical Writing</a></li>
-                        <li><a href="#services">Creative Writing</a></li>
-                        <li><a href="#services">Writing Training</a></li>
-                    </ul>
-                </li>
+            <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="primary-navigation">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#training">Training</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="#quote" class="btn-primary">Get Quote</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#quote" class="btn-nav">Get Started</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="wave wave-top"></div>
-            <div class="wave wave-bottom"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="logo-large">
-                    <img src="/public/logo.jpeg" alt="Gradex Writers Logo" class="logo-image-large">
-                </div>
-                <h2 class="slogan">
-                    <span class="slogan-line">We Write.</span>
-                    <span class="slogan-line">You Excel.</span>
-                </h2>
-                <p class="hero-subtitle">Where expertise meets excellence. Trusted by thousands worldwide • Always here when you need us</p>
-                <div class="service-tags">
-                    <span>ACADEMIC EXCELLENCE • RESEARCH MASTERY • BUSINESS IMPACT</span>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#quote" class="btn btn-gold">Get Started</a>
-                    <a href="#services" class="btn btn-outline">Learn More</a>
-                </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="/Gradex%20logo.jpg" alt="Gradex Writers" class="hero-logo-img">
+            </div>
+            <h1 class="hero-headline">Gradex Writers &mdash; Professional Academic, Business & Content Writing</h1>
+            <p class="hero-subheadline">Trusted global writing experts helping students, researchers and professionals craft precise, original, and deadline-ready documents.</p>
+            <div class="hero-buttons">
+                <a href="#training" class="btn btn-primary">Request for Training</a>
+                <a href="https://wa.me/yournumber" class="btn btn-secondary" target="_blank">Chat on WhatsApp</a>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services collapsible-section">
         <div class="container">
-            <div class="section-header collapsible-header" data-target="services-content">
-                <div>
-                    <h2 class="section-title">Our Services</h2>
-                    <p class="section-subtitle">Where your vision meets our expertise</p>
-                </div>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="services-grid collapsible-content" id="services-content">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Our Services</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">📚</div>
                     <h3>Academic Writing</h3>
-                    <p>Transform your ideas into compelling academic excellence. From high school essays to doctoral dissertations, we craft scholarly work that stands out.</p>
-                    <ul>
-                        <li>Every academic level covered</li>
-                        <li>100% original, plagiarism-free</li>
-                        <li>Perfect citations & formatting</li>
-                    </ul>
+                    <p>Essays, coursework, research papers, literature reviews, theses & dissertations. Comprehensive support from assignment-level essays to PhD dissertation chapters. Services include research, drafting, referencing, and final edits.</p>
+                    <a href="#quote" class="service-cta">Request a Quote →</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">💼</div>
                     <h3>Business Writing</h3>
-                    <p>Elevate your professional presence with documents that command attention. Strategic reports, compelling proposals, and executive-ready content.</p>
-                    <ul>
-                        <li>Boardroom-ready presentations</li>
-                        <li>Strategic business plans</li>
-                        <li>Data-driven market insights</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Technical Writing</h3>
-                    <p>Complex concepts made crystal clear. Transform technical complexity into accessible documentation that users actually understand.</p>
-                    <ul>
-                        <li>Developer-friendly API docs</li>
-                        <li>Intuitive user guides</li>
-                        <li>Precision technical reports</li>
-                    </ul>
+                    <p>Business plans, proposals, reports, professional emails, investor decks. Professional business plans, investor-ready proposals, internal reports, and polished corporate communications.</p>
+                    <a href="#quote" class="service-cta">Get a Proposal →</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">✍️</div>
-                    <h3>Creative Writing</h3>
-                    <p>Stories that resonate. Content that converts. From blog posts to brand narratives, we create words that move people to action.</p>
-                    <ul>
-                        <li>SEO-optimized for visibility</li>
-                        <li>Engaging social content</li>
-                        <li>Authentic brand voice</li>
-                    </ul>
+                    <h3>Content Writing</h3>
+                    <p>Blog posts, articles, website copy, SEO content, social media content packs. SEO-friendly blog posts, article research, website pages, and ad copy that convert.</p>
+                    <a href="#quote" class="service-cta">Order Content →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Data & Analysis</h3>
+                    <p>SPSS / R / Excel analysis, interpretation, and charts. Quantitative analysis, survey data cleaning, statistical testing, and visualization.</p>
+                    <a href="#quote" class="service-cta">Share Your Data →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3>Editing & Proofreading</h3>
+                    <p>Structural edits, line edits, reference checks, formatting. Grammar, structure, reference formatting, plagiarism checks, and readability improvements.</p>
+                    <a href="#quote" class="service-cta">Upload Document →</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🎓</div>
-                    <h3>Writing Training</h3>
-                    <p>Master the art of writing with personalized mentorship. Level up your skills through expert guidance tailored to your goals.</p>
-                    <ul>
-                        <li>1-on-1 expert mentorship</li>
-                        <li>Personalized skill assessment</li>
-                        <li>Custom learning roadmap</li>
-                    </ul>
+                    <h3>Training & Mentorship Program</h3>
+                    <p>Become a skilled academic writer with personalized training, practical exercises, and real client-acquisition guidance. Perfect for beginners and writers who want to start earning immediately.</p>
+                    <a href="#training" class="service-cta">Learn More →</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header collapsible-header" data-target="pricing-content">
-                <div>
-                    <h2 class="section-title">Transparent Pricing</h2>
-                    <p class="section-subtitle">Fair, flexible, and tailored to your project</p>
-                </div>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="pricing-grid collapsible-content" id="pricing-content">
-                <div class="pricing-card">
-                    <h3>High School</h3>
-                    <div class="price">$5 - $10</div>
-                    <div class="price-unit">per page</div>
-                    <ul>
-                        <li>Standard assignments</li>
-                        <li>5-7 day delivery</li>
-                        <li>Basic research</li>
-                    </ul>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="badge">Popular</div>
-                    <h3>College Level</h3>
-                    <div class="price">$10 - $20</div>
-                    <div class="price-unit">per page</div>
-                    <ul>
-                        <li>Undergraduate essays</li>
-                        <li>3-5 day delivery</li>
-                        <li>In-depth research</li>
-                        <li>Citations included</li>
-                    </ul>
-                </div>
-                <div class="pricing-card">
-                    <h3>Master's Level</h3>
-                    <div class="price">$20 - $40</div>
-                    <div class="price-unit">per page</div>
-                    <ul>
-                        <li>Graduate research</li>
-                        <li>2-4 day delivery</li>
-                        <li>Advanced analysis</li>
-                        <li>Peer-reviewed sources</li>
-                    </ul>
-                </div>
-                <div class="pricing-card">
-                    <h3>PhD / Technical</h3>
-                    <div class="price">$40 - $80</div>
-                    <div class="price-unit">per page</div>
-                    <ul>
-                        <li>Doctoral papers</li>
-                        <li>1-3 day delivery</li>
-                        <li>Expert-level writing</li>
-                        <li>Specialized research</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="business-pricing">
-                <h3>Business Documents</h3>
-                <p>$30 - $100 per project (depending on length and specialization)</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Calculator Section -->
-    <section id="quote" class="quote-calculator">
-        <div class="container">
-            <h2 class="section-title">Get an Instant Quote</h2>
-            <p class="section-subtitle">Know your investment in moments, not days</p>
-            <div class="calculator-container">
-                <div class="calculator-form">
-                    <div class="form-group">
-                        <label for="academic-level">Service Type</label>
-                        <select id="academic-level">
-                            <optgroup label="Academic Writing">
-                                <option value="highschool">High School ($5-10/page)</option>
-                                <option value="college" selected>College Level ($10-20/page)</option>
-                                <option value="masters">Master's Level ($20-40/page)</option>
-                                <option value="phd">PhD / Technical ($40-80/page)</option>
-                            </optgroup>
-                            <optgroup label="Business Services">
-                                <option value="business">Business Document ($30-100/project)</option>
-                            </optgroup>
-                            <optgroup label="Training Packages">
-                                <option value="training-beginner">Beginner Training ($40 fixed)</option>
-                                <option value="training-intermediate">Intermediate Training ($80 fixed)</option>
-                                <option value="training-advanced">Advanced Training ($120 fixed)</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="pages">Number of Pages</label>
-                        <input type="number" id="pages" min="1" value="5" />
-                    </div>
-                    <div class="form-group">
-                        <label for="urgency">Delivery Time</label>
-                        <select id="urgency">
-                            <option value="standard">Standard (5-7 days)</option>
-                            <option value="express" selected>Express (3-5 days)</option>
-                            <option value="urgent">Urgent (1-3 days)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="complexity">Complexity</label>
-                        <select id="complexity">
-                            <option value="simple" selected>Simple</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="complex">Complex</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="calculator-result">
-                    <h3>Estimated Cost</h3>
-                    <div class="estimated-price">
-                        <span class="currency">$</span>
-                        <span id="estimated-cost">0</span>
-                    </div>
-                    <p class="price-note">*Final price may vary based on specific requirements</p>
-                    <button class="btn btn-gold btn-full" onclick="alert('Order form coming soon! Contact us at info@gradexwriters.com')">
-                        Place Order
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section id="features" class="features collapsible-section">
         <div class="container">
-            <div class="section-header collapsible-header" data-target="features-content">
-                <div>
-                    <h2 class="section-title">Why Choose Gradex Writers</h2>
-                    <p class="section-subtitle">Experience excellence in every project</p>
-                </div>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="features-grid collapsible-content" id="features-content">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Why Choose Us</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <h3>100% Confidential</h3>
-                    <p>Your privacy and data are protected with industry-leading security measures</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <h3>Plagiarism-Free</h3>
-                    <p>All work is original and checked with premium plagiarism detection tools</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">👥</div>
-                    <h3>Expert Writers</h3>
-                    <p>Skilled professionals with advanced degrees and industry experience</p>
+                    <div class="feature-icon">✅</div>
+                    <h3>100% Original Work</h3>
+                    <p>100% original, plagiarism-checked work. Every document is verified for authenticity and originality.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">⚡</div>
                     <h3>Fast Turnaround</h3>
-                    <p>Meet tight deadlines without compromising on quality</p>
+                    <p>Fast turnaround: standard, rush, and urgent delivery options. We meet your deadlines, no matter how tight.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Unlimited Revisions</h3>
-                    <p>Free revisions until you're completely satisfied with the work</p>
+                    <div class="feature-icon">📖</div>
+                    <h3>Expert Citation Styles</h3>
+                    <p>Experts in APA, MLA, Harvard, Chicago & Vancouver styles. Proper formatting guaranteed for all academic requirements.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">🌍</div>
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Confidential</h3>
+                    <p>Secure payments & strict confidentiality. Your privacy and financial information are always protected.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3>Dedicated Project Manager</h3>
+                    <p>Dedicated project manager for larger projects. Personal support throughout your project lifecycle.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
                     <h3>24/7 Support</h3>
-                    <p>Round-the-clock customer service to assist you anytime, anywhere</p>
+                    <p>Round-the-clock customer support. Get answers to your questions instantly via live chat or WhatsApp.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💳</div>
-                    <h3>Secure Payments</h3>
-                    <p>Multiple payment options including PayPal, Stripe, and crypto</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3>AI-Powered Matching</h3>
-                    <p>Automatically matched with the best writer for your topic and needs</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Indicators -->
-    <section class="trust">
+    <!-- Training & Mentorship Program Section -->
+    <section id="training" class="training-section collapsible-section">
         <div class="container">
-            <div class="trust-content">
-                <h2>Trusted Globally</h2>
-                <div class="trust-stats">
-                    <div class="stat">
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-label">Projects Completed</div>
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Training & Mentorship Program</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+            <p class="section-subtitle">Start your academic writing career with Gradex Writers' official training program. Designed for beginners and intermediate writers who want to learn academic writing professionally AND learn how to secure clients.</p>
+            <p class="section-subtitle">We don't just teach you the theory&mdash;we mentor you step-by-step, provide templates, and show you exactly how clients are secured online.</p>
+
+            <div class="training-content">
+                <div class="training-learn">
+                    <h3 class="subsection-title">What You Will Learn</h3>
+                    <div class="training-grid">
+                        <div class="training-item">
+                            <div class="training-icon">📘</div>
+                            <h4>Academic Writing Skills</h4>
+                            <ul>
+                                <li>Understanding academic writing structure</li>
+                                <li>Paragraphing & argument development</li>
+                                <li>How to research effectively</li>
+                                <li>How to paraphrase properly</li>
+                                <li>Avoiding plagiarism</li>
+                                <li>Editing + proofreading basics</li>
+                            </ul>
+                        </div>
+                        <div class="training-item">
+                            <div class="training-icon">📚</div>
+                            <h4>Referencing Skills</h4>
+                            <ul>
+                                <li>APA 7</li>
+                                <li>MLA</li>
+                                <li>Harvard</li>
+                                <li>Chicago</li>
+                                <li>In-text citations & reference list creation</li>
+                            </ul>
+                        </div>
+                        <div class="training-item">
+                            <div class="training-icon">🤖</div>
+                            <h4>Using AI Correctly</h4>
+                            <ul>
+                                <li>How to use AI tools ethically</li>
+                                <li>How to avoid AI detection</li>
+                                <li>How to refine AI drafts</li>
+                                <li>How to structure documents using AI support</li>
+                            </ul>
+                        </div>
+                        <div class="training-item">
+                            <div class="training-icon">💼</div>
+                            <h4>Client Acquisition Training</h4>
+                            <ul>
+                                <li>Where to find clients</li>
+                                <li>How to approach them</li>
+                                <li>How to write winning pitches</li>
+                                <li>Pricing strategies</li>
+                                <li>Payment safety</li>
+                                <li>How to maintain long-term clients</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Satisfaction</div>
+                </div>
+
+                <div class="training-tools">
+                    <h3 class="subsection-title">Tools & Templates Provided</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">✓ Sample essays</div>
+                        <div class="tool-item">✓ Templates for assignments</div>
+                        <div class="tool-item">✓ Referencing cheat-sheets</div>
+                        <div class="tool-item">✓ Client outreach messages</div>
+                        <div class="tool-item">✓ Pricing guide</div>
+                        <div class="tool-item">✓ Step-by-step writing workflow</div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Expert Writers</div>
+                </div>
+
+                <div class="training-packages">
+                    <h3 class="subsection-title">Program Packages & Pricing</h3>
+                    <div class="packages-grid">
+                        <div class="package-card">
+                            <h4>Beginner Package</h4>
+                            <div class="package-price">$40</div>
+                            <div class="package-duration">Duration: 3 days</div>
+                            <ul class="package-features">
+                                <li>✓ Academic writing basics</li>
+                                <li>✓ Referencing introduction</li>
+                                <li>✓ Paraphrasing techniques</li>
+                                <li>✓ Sample questions</li>
+                                <li>✓ Certificate</li>
+                            </ul>
+                            <a href="#quote" class="btn btn-primary">Enroll Now</a>
+                        </div>
+                        <div class="package-card featured">
+                            <div class="package-badge">Popular</div>
+                            <h4>Intermediate Package</h4>
+                            <div class="package-price">$80</div>
+                            <div class="package-duration">Duration: 5–7 days</div>
+                            <ul class="package-features">
+                                <li>✓ Everything in Beginner</li>
+                                <li>✓ Full referencing mastery</li>
+                                <li>✓ Research skills</li>
+                                <li>✓ Zero-plagiarism workflow</li>
+                                <li>✓ Editing techniques</li>
+                                <li>✓ Templates pack</li>
+                                <li>✓ Personalized feedback</li>
+                            </ul>
+                            <a href="#quote" class="btn btn-primary">Enroll Now</a>
+                        </div>
+                        <div class="package-card">
+                            <h4>Advanced + Client Acquisition</h4>
+                            <div class="package-price">$120</div>
+                            <div class="package-duration">Duration: 10 days</div>
+                            <ul class="package-features">
+                                <li>✓ Everything in Intermediate</li>
+                                <li>✓ Client acquisition training</li>
+                                <li>✓ Pricing guidance</li>
+                                <li>✓ Client scripts</li>
+                                <li>✓ Branding yourself as a writer</li>
+                                <li>✓ Portfolio setup</li>
+                                <li>✓ Direct mentorship session</li>
+                            </ul>
+                            <a href="#quote" class="btn btn-primary">Enroll Now</a>
+                        </div>
                     </div>
-                    <div class="stat">
+                    <p class="package-note"><strong>Note:</strong> Program duration depends on the learner's pace. Installment payments available for Intermediate & Advanced packages.</p>
+                </div>
+
+                <div class="training-who">
+                    <h3 class="subsection-title">Who This Program Is For</h3>
+                    <div class="who-grid">
+                        <div class="who-item">✓ Students who want to earn online</div>
+                        <div class="who-item">✓ New writers with no experience</div>
+                        <div class="who-item">✓ Writers who want more clients</div>
+                        <div class="who-item">✓ Anyone looking to start a writing business</div>
+                    </div>
+                </div>
+
+                <div class="training-why">
+                    <h3 class="subsection-title">Why Choose Gradex Writers Training</h3>
+                    <div class="why-grid">
+                        <div class="why-item">✓ We train using real client scenarios</div>
+                        <div class="why-item">✓ Step-by-step personalized mentorship</div>
+                        <div class="why-item">✓ Affordable pricing</div>
+                        <div class="why-item">✓ Practical templates</div>
+                        <div class="why-item">✓ Proven client acquisition formula</div>
+                    </div>
+                </div>
+
+                <div class="training-cta">
+                    <h3>Ready to Start Your Writing Career?</h3>
+                    <p>Join our training program and start earning through academic writing.</p>
+                    <div class="cta-buttons">
+                        <a href="#quote" class="btn btn-primary btn-large">Enroll Now</a>
+                        <a href="https://wa.me/yournumber" class="btn btn-secondary btn-large" target="_blank">Chat With a Trainer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Calculator Section -->
+    <section id="quote" class="quote-section collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Get Your Free Quote</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="quote-calculator">
+                <form class="quote-form" id="quote-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-type">Service Type *</label>
+                            <select id="service-type" name="service-type" required>
+                                <optgroup label="Academic Writing">
+                                    <option value="high-school">High School / Diploma</option>
+                                    <option value="undergraduate">Undergraduate (Bachelor)</option>
+                                    <option value="masters">Master's Level</option>
+                                    <option value="phd">PhD / Research-Intensive</option>
+                                    <option value="technical">Technical / STEM Subjects</option>
+                                    <option value="dissertation">Dissertation / Thesis Chapter</option>
+                                </optgroup>
+                                <optgroup label="Business Writing">
+                                    <option value="business-docs">Business Documents (plans, proposals)</option>
+                                </optgroup>
+                                <optgroup label="Content Writing">
+                                    <option value="content">Content Writing (blogs, articles)</option>
+                                </optgroup>
+                                <optgroup label="Data & Analysis">
+                                    <option value="data-analysis">Data Analysis (SPSS/R/Stata)</option>
+                                </optgroup>
+                                <optgroup label="Editing & Proofreading">
+                                    <option value="editing">Editing & Proofreading</option>
+                                </optgroup>
+                                <optgroup label="Training & Mentorship">
+                                    <option value="training-beginner">Training - Beginner Package ($40)</option>
+                                    <option value="training-intermediate">Training - Intermediate Package ($80)</option>
+                                    <option value="training-advanced">Training - Advanced + Client Acquisition ($120)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic-level">Academic Level</label>
+                            <select id="academic-level" name="academic-level">
+                                <option value="">Select Level</option>
+                                <option value="high-school">High School</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="masters">Master's</option>
+                                <option value="phd">PhD</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pages">Pages/Words *</label>
+                            <input type="number" id="pages" name="pages" min="1" value="1" required>
+                            <small>1 page = ~275-300 words</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="deadline">Deadline *</label>
+                            <input type="date" id="deadline" name="deadline" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="urgency">Urgency *</label>
+                            <select id="urgency" name="urgency" required>
+                                <option value="standard">Standard (5-7 days)</option>
+                                <option value="rush">Rush (48-72 hrs)</option>
+                                <option value="urgent">Urgent (&lt;48 hrs)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Preferred Payment Currency</label>
+                            <select id="currency" name="currency">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="CAD">CAD ($)</option>
+                                <option value="AUD">AUD ($)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="file-upload">Upload Files</label>
+                        <input type="file" id="file-upload" name="file-upload" multiple accept=".pdf,.doc,.docx,.txt">
+                        <small>Upload assignment brief, guidelines, or reference materials</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="instructions">Additional Instructions</label>
+                        <textarea id="instructions" name="instructions" rows="4" placeholder="Any specific requirements, formatting needs, or additional details..."></textarea>
+                    </div>
+                    <button type="button" id="calculate-btn" class="btn btn-primary">Calculate Estimated Price</button>
+                </form>
+                <div class="quote-result" id="quote-result">
+                    <div class="quote-display">
+                        <p class="quote-label">Estimated Price</p>
+                        <p class="quote-price" id="quote-price">$0.00</p>
+                        <p class="quote-note">*Final price may vary based on specific requirements. 50% deposit for new clients; balance on delivery.</p>
+                        <button type="submit" form="quote-form" class="btn btn-secondary" style="margin-top: 20px;">Submit Quote Request</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Transparent Pricing</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+            <p class="section-subtitle">Competitive rates based on global market standards. Prices are indicative; final quotes are provided after reviewing the brief.</p>
+            <p class="section-subtitle" style="font-size: 0.9em; margin-top: 10px;"><strong>Note:</strong> A &ldquo;page&rdquo; = ~275&ndash;300 words unless specified. 50% deposit for new clients; balance on delivery. Bulk / recurring discounts available &mdash; ask for enterprise pricing.</p>
+            <div class="pricing-table-container">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service / Level</th>
+                            <th>Standard<br>(5–7 days)</th>
+                            <th>Rush<br>(48–72 hrs)</th>
+                            <th>Urgent<br>(&lt;48 hrs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High School / Diploma</td>
+                            <td>$10 – $15 / page</td>
+                            <td>$20 – $25 / page</td>
+                            <td>$30 – $45 / page</td>
+                        </tr>
+                        <tr>
+                            <td>Undergraduate (Bachelor)</td>
+                            <td>$12 – $20 / page</td>
+                            <td>$25 – $35 / page</td>
+                            <td>$40 – $60 / page</td>
+                        </tr>
+                        <tr>
+                            <td>Master's Level</td>
+                            <td>$18 – $28 / page</td>
+                            <td>$35 – $50 / page</td>
+                            <td>$60 – $90 / page</td>
+                        </tr>
+                        <tr>
+                            <td>PhD / Research-Intensive</td>
+                            <td>$25 – $40 / page</td>
+                            <td>$50 – $80 / page</td>
+                            <td>$90 – $150 / page</td>
+                        </tr>
+                        <tr>
+                            <td>Technical / STEM Subjects</td>
+                            <td>$20 – $35 / page</td>
+                            <td>$40 – $65 / page</td>
+                            <td>$70 – $120 / page</td>
+                        </tr>
+                        <tr>
+                            <td>Data Analysis (SPSS/R/Stata)</td>
+                            <td>$50 – $120 / project</td>
+                            <td>$120 – $250</td>
+                            <td>$250 – $500</td>
+                        </tr>
+                        <tr>
+                            <td>Dissertation / Thesis Chapter</td>
+                            <td>$200 – $500 / chapter</td>
+                            <td>$500 – $900</td>
+                            <td>$900 – $1500</td>
+                        </tr>
+                        <tr>
+                            <td>Business Documents (plans, proposals)</td>
+                            <td>$30 – $80 / page</td>
+                            <td>$80 – $140 / page</td>
+                            <td>$140 – $250 / page</td>
+                        </tr>
+                        <tr>
+                            <td>Content Writing (blogs, articles)</td>
+                            <td>$40 – $120 / article<br>(800–1500 w)</td>
+                            <td>$75 – $180</td>
+                            <td>$120 – $300</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="training-pricing-section" style="margin-top: 40px;">
+                <h3 class="subsection-title" style="text-align: center; margin-bottom: 20px;">Training & Mentorship Program Pricing</h3>
+                <div class="packages-grid" style="max-width: 1200px; margin: 0 auto;">
+                    <div class="package-card" style="text-align: center;">
+                        <h4>Beginner Package</h4>
+                        <div class="package-price" style="font-size: 2em; font-weight: bold; color: #2563eb; margin: 15px 0;">$40</div>
+                        <div style="color: #666; margin-bottom: 20px;">3 days</div>
+                        <a href="#training" class="btn btn-primary">Learn More</a>
+                    </div>
+                    <div class="package-card featured" style="text-align: center;">
+                        <div class="package-badge">Popular</div>
+                        <h4>Intermediate Package</h4>
+                        <div class="package-price" style="font-size: 2em; font-weight: bold; color: #2563eb; margin: 15px 0;">$80</div>
+                        <div style="color: #666; margin-bottom: 20px;">5–7 days</div>
+                        <a href="#training" class="btn btn-primary">Learn More</a>
+                    </div>
+                    <div class="package-card" style="text-align: center;">
+                        <h4>Advanced + Client Acquisition</h4>
+                        <div class="package-price" style="font-size: 2em; font-weight: bold; color: #2563eb; margin: 15px 0;">$120</div>
+                        <div style="color: #666; margin-bottom: 20px;">10 days</div>
+                        <a href="#training" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">About Gradex Writers</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="about-content">
+                <div class="about-text">
+                    <p>Gradex Writers is a team of experienced academic and professional writers dedicated to helping clients worldwide present their ideas clearly and convincingly. Our writers include PhD researchers, industry specialists, and professional editors who follow rigorous quality checks to ensure every paper meets international academic standards.</p>
+                    
+                    <p>Whether you're an undergraduate student aiming for top grades, a researcher preparing a journal submission, or a business owner needing crisp proposals and reports, we provide tailored writing solutions that save you time and improve outcomes. Confidentiality, accuracy, and timely delivery are cornerstones of our service.</p>
+
+                    <p>We understand that every project is unique, and we're committed to delivering work that not only meets but exceeds your expectations. Our global team works around the clock to ensure you receive quality writing services whenever you need them.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Original Work</div>
+                    </div>
+                    <div class="stat-box">
                         <div class="stat-number">24/7</div>
                         <div class="stat-label">Support Available</div>
                     </div>
+                    <div class="stat-box">
+                        <div class="stat-number">Global</div>
+                        <div class="stat-label">Trusted Worldwide</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">How It Works</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Submit Brief & Upload Files</h3>
+                    <p>Share your assignment requirements, guidelines, and any reference materials through our quote form.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>Receive a Quote</h3>
+                    <p>Get an accurate price estimate based on your project details, deadline, and complexity level.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Pay Deposit</h3>
+                    <p>Secure your order with a 50% deposit. We accept PayPal, Payoneer, Stripe, and bank transfers.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3>Review & Receive Final Work</h3>
+                    <p>Review your completed work and request revisions if needed. Pay the balance upon approval.</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Accordion -->
+    <section id="policies" class="legal-section collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Policies</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="accordion" id="policies-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span>Terms & Conditions</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-panel" hidden>
+                        <p class="section-subtitle">Last Updated: 2026</p>
+                        <div class="legal-content">
+                            <p>Welcome to Gradex Writers. By placing an order, accessing our website, or communicating with our team, you agree to the following Terms & Conditions.</p>
+                            <h3>1. Services Provided</h3>
+                            <ul>
+                                <li>Research assistance</li>
+                                <li>Drafting support</li>
+                                <li>Reference use</li>
+                                <li>Model paper creation</li>
+                            </ul>
+                            <p>We do not encourage academic dishonesty; clients are responsible for how they use the delivered materials.</p>
+                            <h3>2. Order Confirmation</h3>
+                            <p>Work begins ONLY after requirements, price agreement, and initial payment.</p>
+                            <h3>3. Delivery Timeline</h3>
+                            <p>Based on length, complexity, writer availability, and deadline. Rush (&lt;24 hrs) costs extra.</p>
+                            <h3>4. Revisions</h3>
+                            <p>1–3 revisions. Minor changes free; major/new instructions may incur charges. Request within 7 days.</p>
+                            <h3>5. Plagiarism Policy</h3>
+                            <p>All work is original and checked with plagiarism tools.</p>
+                            <h3>6. Payment Terms</h3>
+                            <p>Full upfront or 50% deposit for large orders. Work released after successful payment.</p>
+                            <h3>7–10</h3>
+                            <p>Refunds per Refund Policy. We keep confidentiality. Client responsible for ethical use. Cancellations allowed only before work begins; partial refunds may apply otherwise.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span>Refund Policy</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-panel" hidden>
+                        <div class="legal-content">
+                            <h3>1. Full Refunds (100%)</h3>
+                            <ul>
+                                <li>No writer assigned</li>
+                                <li>Project not started</li>
+                                <li>Cancelled within 30 minutes of payment</li>
+                            </ul>
+                            <h3>2. Partial Refunds (30%–70%)</h3>
+                            <ul>
+                                <li>Work started but not completed</li>
+                                <li>Instructions changed mid-way</li>
+                                <li>Research time already used</li>
+                                <li>Unavoidable delays (case-by-case)</li>
+                            </ul>
+                            <h3>3. No Refunds</h3>
+                            <ul>
+                                <li>Order delivered in full</li>
+                                <li>Incorrect instructions from client</li>
+                                <li>Topic/instructions changed after delivery</li>
+                                <li>Work intended for illegal/unethical use</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span>Privacy Policy</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-panel" hidden>
+                        <div class="legal-content">
+                            <h3>1. Information We Collect</h3>
+                            <p>Name/username, email, order details, deadlines, and payment confirmations.</p>
+                            <h3>2. How We Use This Information</h3>
+                            <p>To process orders, communicate, deliver documents, improve services, and maintain security. We never sell or rent data.</p>
+                            <h3>3. Data Security</h3>
+                            <p>Secure storage for documents, chats, and transactions. Authorized staff only.</p>
+                            <h3>4. Cookies & Tracking</h3>
+                            <p>Cookies/session logs for analytics to optimize experience.</p>
+                            <h3>5. Third‑Party Payments</h3>
+                            <p>Trusted payment providers; we don’t store card data.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="faq-list">
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I place an order?</h3>
+                    <p class="faq-answer">Send your instructions and deadline, receive a quote, make payment &mdash; we assign a writer immediately.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">How fast can you deliver?</h3>
+                    <p class="faq-answer">6-hour urgent, 12-hour express, standard 24–72 hours, and extended timelines for long projects.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Will my paper be original?</h3>
+                    <p class="faq-answer">Yes. All documents are written from scratch and scanned for plagiarism.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you share my information?</h3>
+                    <p class="faq-answer">Never. All client details remain confidential.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I request revisions?</h3>
+                    <p class="faq-answer">Yes. Minor revisions are free. Major changes may cost extra if instructions change.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">What subjects do you cover?</h3>
+                    <p class="faq-answer">Nursing, Business, Psychology, Sociology, Finance, IT, Law, History, Engineering &mdash; and 80+ more fields.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I pay?</h3>
+                    <p class="faq-answer">We accept PayPal, bank transfer, and region-dependent mobile/wallet payments.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">What if I'm not satisfied?</h3>
+                    <p class="faq-answer">Refer to our Refund Policy. We handle all cases fairly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I need experience to join the Training & Mentorship Program?</h3>
+                    <p class="faq-answer">No. We train absolute beginners. Our Beginner Package is designed specifically for those with no prior experience in academic writing.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I attend the training?</h3>
+                    <p class="faq-answer">Training is conducted through WhatsApp, Zoom, or Google Meet depending on the package you choose. We'll coordinate the best method for you.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Will I be assisted to get clients?</h3>
+                    <p class="faq-answer">Yes&mdash;our Advanced + Client Acquisition package includes full client acquisition mentorship, including where to find clients, how to approach them, pricing strategies, and maintaining long-term relationships.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I get a certificate after completing the training?</h3>
+                    <p class="faq-answer">Yes, you will receive a certificate upon successful completion of the program, regardless of which package you choose.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I pay for the training program in installments?</h3>
+                    <p class="faq-answer">Yes, installment payments are available for Intermediate & Advanced packages. Contact us to discuss payment arrangements.</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials collapsible-section">
+        <div class="container">
+            <button class="section-toggle" aria-expanded="true">
+                <h2 class="section-title">What Clients Say</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+                <div class="carousel" data-autoplay="true" data-interval="5000">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">&#9733;</div>
+                            <h4>Emily Carter &mdash; University of Toronto</h4>
+                            <p>“I was stressed about my deadline, but Gradex Writers handled everything perfectly. The paper felt like something I would write &mdash; just way better.”</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">&#9733;</div>
+                            <h4>Liam Anderson &mdash; University of Melbourne</h4>
+                            <p>“They followed every instruction exactly. No delays, no issues &mdash; just solid, clean work.”</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">&#9733;</div>
+                            <h4>Aisha Mohamed &mdash; King’s College London</h4>
+                            <p>“As a nursing student, accuracy is everything. They nailed every detail in my case study.”</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">&#9733;</div>
+                            <h4>Daniel Ruiz &mdash; Startup Founder, Spain</h4>
+                            <p>“The pitch deck was so professional an investor asked who designed it. Amazing work.”</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">&#9733;</div>
+                            <h4>Olivia Tan &mdash; Singapore</h4>
+                            <p>“After they rewrote my product descriptions, my conversions actually increased.”</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control prev" aria-label="Previous">&lsaquo;</button>
+                <button class="carousel-control next" aria-label="Next">&rsaquo;</button>
+                <div class="carousel-dots">                </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section id="contact" class="cta-section collapsible-section">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Transform Your Ideas?</h2>
-                <p>Join thousands who've elevated their work with our expertise. Your success story starts here.</p>
-                <a href="#quote" class="btn btn-gold btn-large">Start Your Project</a>
+            <button class="section-toggle" aria-expanded="true">
+                <h2>Ready to Excel?</h2>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="section-content">
+            <p>Join thousands of satisfied clients who trust Gradex Writers for their writing needs</p>
+            <div class="cta-buttons">
+                <a href="#quote" class="btn btn-primary btn-large">Start Your Project</a>
+                <a href="#services" class="btn btn-secondary btn-large">Learn More</a>
+            </div>
             </div>
         </div>
     </section>
@@ -353,53 +844,42 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="logo">
-                        <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Fountain Pen Nib -->
-                            <path d="M12 4L8 8L12 12L16 8L12 4Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
-                            <circle cx="12" cy="8" r="1.5" fill="white"/>
-                            <line x1="12" y1="12" x2="12" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M10 28L12 30L14 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span class="logo-text">Gradex Writers</span>
+                    <div class="footer-logo">
+                        <img src="/Gradex%20logo.jpg" alt="Gradex Writers" class="footer-logo-img">
                     </div>
-                    <p>We Write. You Excel.</p>
+                    <p>Professional writing services trusted globally. We write. You excel.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
                         <li><a href="#services">Academic Writing</a></li>
+                        <li><a href="#services">Research Writing</a></li>
                         <li><a href="#services">Business Writing</a></li>
-                        <li><a href="#services">Technical Writing</a></li>
-                        <li><a href="#services">Creative Writing</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Company</h4>
                     <ul>
+                        <li><a href="#about">About Us</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
-                        <li><a href="#quote">Get Quote</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">24/7 Support</a></li>
+                        <li>24/7 Live Chat</li>
+                        <li>Email Support</li>
+                        <li>FAQ</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Gradex Writers. All rights reserved.</p>
+                <p>&copy; 2026 Gradex Writers made by captivart agency (<a href="https://captivart.art" target="_blank" rel="noopener noreferrer">captivart.art</a>) | TRUSTED GLOBALLY &bull; 24/7 SUPPORT</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js?v=20251204"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
-
