@@ -12,7 +12,9 @@
           "js/**",
           "admin/**",
           "uploads/**",
-          "public/**"
+          "public/**",
+          "logo.jpeg",
+          "favicon.ico"
         ]
       }
     }
